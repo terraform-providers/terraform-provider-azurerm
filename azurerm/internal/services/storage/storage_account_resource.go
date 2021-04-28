@@ -1153,7 +1153,13 @@ func resourceStorageAccountRead(d *schema.ResourceData, meta interface{}) error 
 		d.Set("access_tier", props.AccessTier)
 		d.Set("enable_https_traffic_only", props.EnableHTTPSTrafficOnly)
 		d.Set("is_hns_enabled", props.IsHnsEnabled)
-		d.Set("allow_blob_public_access", props.AllowBlobPublicAccess)
+
+		if props.AllowBlobPublicAccess == nil {
+			d.Set("allow_blob_public_access", false)
+		} else {
+			d.Set("allow_blob_public_access", props.AllowBlobPublicAccess)
+		}
+
 		// For all Clouds except Public and USGovernmentCloud, "min_tls_version" is not returned from Azure so always persist the default values for "min_tls_version".
 		// https://github.com/terraform-providers/terraform-provider-azurerm/issues/7812
 		// https://github.com/terraform-providers/terraform-provider-azurerm/issues/8083

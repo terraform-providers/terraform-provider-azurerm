@@ -321,7 +321,12 @@ func dataSourceStorageAccountRead(d *schema.ResourceData, meta interface{}) erro
 		d.Set("enable_https_traffic_only", props.EnableHTTPSTrafficOnly)
 		d.Set("min_tls_version", string(props.MinimumTLSVersion))
 		d.Set("is_hns_enabled", props.IsHnsEnabled)
-		d.Set("allow_blob_public_access", props.AllowBlobPublicAccess)
+
+		if props.AllowBlobPublicAccess == nil {
+			d.Set("allow_blob_public_access", false)
+		} else {
+			d.Set("allow_blob_public_access", props.AllowBlobPublicAccess)
+		}
 
 		if customDomain := props.CustomDomain; customDomain != nil {
 			if err := d.Set("custom_domain", flattenStorageAccountCustomDomain(customDomain)); err != nil {
