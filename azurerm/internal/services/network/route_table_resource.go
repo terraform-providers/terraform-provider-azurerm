@@ -57,7 +57,7 @@ func resourceRouteTable() *schema.Resource {
 			"resource_group_name": azure.SchemaResourceGroupName(),
 
 			"route": {
-				Type:       schema.TypeList,
+				Type:       schema.TypeSet,
 				ConfigMode: schema.SchemaConfigModeAttr,
 				Optional:   true,
 				Computed:   true,
