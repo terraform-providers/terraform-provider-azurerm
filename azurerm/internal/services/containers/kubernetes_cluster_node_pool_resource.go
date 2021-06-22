@@ -13,6 +13,7 @@ import (
 	computeValidate "github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/compute/validate"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/containers/parse"
 	containerValidate "github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/containers/validate"
+	networkValidate "github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/network/validate"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tags"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/pluginsdk"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/validation"
@@ -145,6 +146,7 @@ func resourceKubernetesClusterNodePool() *pluginsdk.Resource {
 				Type:     pluginsdk.TypeMap,
 				Optional: true,
 				ForceNew: true,
+				Computed: true,
 				Elem: &pluginsdk.Schema{
 					Type: pluginsdk.TypeString,
 				},
@@ -201,6 +203,13 @@ func resourceKubernetesClusterNodePool() *pluginsdk.Resource {
 					string(containerservice.OSTypeLinux),
 					string(containerservice.OSTypeWindows),
 				}, false),
+			},
+
+			"pod_subnet_id": {
+				Type:         pluginsdk.TypeString,
+				Optional:     true,
+				ForceNew:     true,
+				ValidateFunc: networkValidate.SubnetID,
 			},
 
 			"priority": {
@@ -377,6 +386,10 @@ func resourceKubernetesClusterNodePoolCreate(d *pluginsdk.ResourceData, meta int
 
 	if osDiskType := d.Get("os_disk_type").(string); osDiskType != "" {
 		profile.OsDiskType = containerservice.OSDiskType(osDiskType)
+	}
+
+	if podSubnetID := d.Get("pod_subnet_id").(string); podSubnetID != "" {
+		profile.PodSubnetID = utils.String(podSubnetID)
 	}
 
 	if vnetSubnetID := d.Get("vnet_subnet_id").(string); vnetSubnetID != "" {
@@ -719,6 +732,7 @@ func resourceKubernetesClusterNodePoolRead(d *pluginsdk.ResourceData, meta inter
 		}
 		d.Set("os_disk_type", osDiskType)
 		d.Set("os_type", string(props.OsType))
+		d.Set("pod_subnet_id", props.PodSubnetID)
 
 		// not returned from the API if not Spot
 		priority := string(containerservice.ScaleSetPriorityRegular)
