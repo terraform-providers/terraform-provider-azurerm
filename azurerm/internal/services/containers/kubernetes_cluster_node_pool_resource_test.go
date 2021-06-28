@@ -1454,7 +1454,7 @@ resource "azurerm_public_ip_prefix" "test" {
   prefix_length       = 31
 }
 
-resource "azurerm_kubernetes_cluster_n_kubernetes_cluster_node_pool" "test" {
+resource "azurerm_kubernetes_cluster_node_pool" "test" {
   name                     = "internal"
   kubernetes_cluster_id    = azurerm_kubernetes_cluster.test.id
   vm_size                  = "Standard_DS2_v2"
