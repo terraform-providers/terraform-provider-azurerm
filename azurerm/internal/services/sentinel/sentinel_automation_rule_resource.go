@@ -12,80 +12,78 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/services/preview/securityinsight/mgmt/2019-01-01-preview/securityinsight"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
 	loganalyticsValidate "github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/loganalytics/validate"
 
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/sentinel/parse"
 
-	azSchema "github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/schema"
-
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/tf"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/clients"
+	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/pluginsdk"
+	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/validation"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/timeouts"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/utils"
 )
 
-func resourceSentinelAutomationRule() *schema.Resource {
-	return &schema.Resource{
+func resourceSentinelAutomationRule() *pluginsdk.Resource {
+	return &pluginsdk.Resource{
 		Create: resourceSentinelAutomationRuleCreateUpdate,
 		Read:   resourceSentinelAutomationRuleRead,
 		Update: resourceSentinelAutomationRuleCreateUpdate,
 		Delete: resourceSentinelAutomationRuleDelete,
 
-		Importer: azSchema.ValidateResourceIDPriorToImport(func(id string) error {
+		Importer: pluginsdk.ImporterValidatingResourceId(func(id string) error {
 			_, err := parse.AutomationRuleID(id)
 			return err
 		}),
 
-		Timeouts: &schema.ResourceTimeout{
-			Create: schema.DefaultTimeout(5 * time.Minute),
-			Read:   schema.DefaultTimeout(5 * time.Minute),
-			Update: schema.DefaultTimeout(5 * time.Minute),
-			Delete: schema.DefaultTimeout(5 * time.Minute),
+		Timeouts: &pluginsdk.ResourceTimeout{
+			Create: pluginsdk.DefaultTimeout(5 * time.Minute),
+			Read:   pluginsdk.DefaultTimeout(5 * time.Minute),
+			Update: pluginsdk.DefaultTimeout(5 * time.Minute),
+			Delete: pluginsdk.DefaultTimeout(5 * time.Minute),
 		},
 
-		Schema: map[string]*schema.Schema{
+		Schema: map[string]*pluginsdk.Schema{
 			"name": {
-				Type:         schema.TypeString,
+				Type:         pluginsdk.TypeString,
 				Required:     true,
 				ForceNew:     true,
 				ValidateFunc: validation.IsUUID,
 			},
 
 			"log_analytics_workspace_id": {
-				Type:         schema.TypeString,
+				Type:         pluginsdk.TypeString,
 				Required:     true,
 				ForceNew:     true,
 				ValidateFunc: loganalyticsValidate.LogAnalyticsWorkspaceID,
 			},
 
 			"display_name": {
-				Type:         schema.TypeString,
+				Type:         pluginsdk.TypeString,
 				Required:     true,
 				ValidateFunc: validation.StringIsNotEmpty,
 			},
 
 			"order": {
-				Type:         schema.TypeInt,
+				Type:         pluginsdk.TypeInt,
 				Required:     true,
 				ValidateFunc: validation.IntBetween(1, 1000),
 			},
 
 			"enabled": {
-				Type:     schema.TypeBool,
+				Type:     pluginsdk.TypeBool,
 				Optional: true,
 				Default:  true,
 			},
 
 			"condition": {
-				Type:     schema.TypeList,
+				Type:     pluginsdk.TypeList,
 				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
+				Elem: &pluginsdk.Resource{
+					Schema: map[string]*pluginsdk.Schema{
 						"property": {
-							Type:     schema.TypeString,
+							Type:     pluginsdk.TypeString,
 							Required: true,
 							ValidateFunc: validation.StringInSlice([]string{
 								string(securityinsight.AutomationRulePropertyConditionSupportedPropertyAccountAadTenantID),
@@ -144,7 +142,7 @@ func resourceSentinelAutomationRule() *schema.Resource {
 						},
 
 						"operator": {
-							Type:     schema.TypeString,
+							Type:     pluginsdk.TypeString,
 							Required: true,
 							ValidateFunc: validation.StringInSlice([]string{
 								string(securityinsight.AutomationRulePropertyConditionSupportedOperatorContains),
@@ -159,10 +157,10 @@ func resourceSentinelAutomationRule() *schema.Resource {
 						},
 
 						"values": {
-							Type:     schema.TypeList,
+							Type:     pluginsdk.TypeList,
 							Required: true,
-							Elem: &schema.Schema{
-								Type: schema.TypeString,
+							Elem: &pluginsdk.Schema{
+								Type: pluginsdk.TypeString,
 							},
 						},
 					},
@@ -170,18 +168,18 @@ func resourceSentinelAutomationRule() *schema.Resource {
 			},
 
 			"action_incident": {
-				Type:     schema.TypeList,
+				Type:     pluginsdk.TypeList,
 				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
+				Elem: &pluginsdk.Resource{
+					Schema: map[string]*pluginsdk.Schema{
 						"order": {
-							Type:         schema.TypeInt,
+							Type:         pluginsdk.TypeInt,
 							Required:     true,
 							ValidateFunc: validation.IntAtLeast(0),
 						},
 
 						"status": {
-							Type:     schema.TypeString,
+							Type:     pluginsdk.TypeString,
 							Optional: true,
 							ValidateFunc: validation.StringInSlice([]string{
 								string(securityinsight.IncidentStatusActive),
@@ -191,7 +189,7 @@ func resourceSentinelAutomationRule() *schema.Resource {
 						},
 
 						"classification": {
-							Type:     schema.TypeString,
+							Type:     pluginsdk.TypeString,
 							Optional: true,
 							ValidateFunc: validation.StringInSlice([]string{
 								string(securityinsight.IncidentClassificationUndetermined),
@@ -203,27 +201,27 @@ func resourceSentinelAutomationRule() *schema.Resource {
 						},
 
 						"classification_comment": {
-							Type:         schema.TypeString,
+							Type:         pluginsdk.TypeString,
 							Optional:     true,
 							ValidateFunc: validation.StringIsNotEmpty,
 						},
 
 						"labels": {
-							Type:     schema.TypeList,
+							Type:     pluginsdk.TypeList,
 							Optional: true,
-							Elem: &schema.Schema{
-								Type: schema.TypeString,
+							Elem: &pluginsdk.Schema{
+								Type: pluginsdk.TypeString,
 							},
 						},
 
 						"owner_id": {
-							Type:         schema.TypeString,
+							Type:         pluginsdk.TypeString,
 							Optional:     true,
 							ValidateFunc: validation.StringIsNotEmpty,
 						},
 
 						"severity": {
-							Type:     schema.TypeString,
+							Type:     pluginsdk.TypeString,
 							Optional: true,
 							ValidateFunc: validation.StringInSlice([]string{
 								string(securityinsight.IncidentSeverityHigh),
@@ -238,24 +236,24 @@ func resourceSentinelAutomationRule() *schema.Resource {
 			},
 
 			"action_playbook": {
-				Type:     schema.TypeList,
+				Type:     pluginsdk.TypeList,
 				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
+				Elem: &pluginsdk.Resource{
+					Schema: map[string]*pluginsdk.Schema{
 						"order": {
-							Type:         schema.TypeInt,
+							Type:         pluginsdk.TypeInt,
 							Required:     true,
 							ValidateFunc: validation.IntAtLeast(0),
 						},
 
 						"logic_app_id": {
-							Type:         schema.TypeString,
+							Type:         pluginsdk.TypeString,
 							Required:     true,
 							ValidateFunc: azure.ValidateResourceID,
 						},
 
 						"tenant_id": {
-							Type: schema.TypeString,
+							Type: pluginsdk.TypeString,
 							// We'll use the current tenant id if this property is absent.
 							Optional:     true,
 							Computed:     true,
@@ -269,7 +267,7 @@ func resourceSentinelAutomationRule() *schema.Resource {
 	}
 }
 
-func resourceSentinelAutomationRuleCreateUpdate(d *schema.ResourceData, meta interface{}) error {
+func resourceSentinelAutomationRuleCreateUpdate(d *pluginsdk.ResourceData, meta interface{}) error {
 	client := meta.(*clients.Client).Sentinel.AutomationRulesClient
 	tenantId := meta.(*clients.Client).Account.TenantId
 	ctx, cancel := timeouts.ForCreateUpdate(meta.(*clients.Client).StopContext, d)
@@ -313,8 +311,7 @@ func resourceSentinelAutomationRuleCreateUpdate(d *schema.ResourceData, meta int
 		},
 	}
 
-	_, err = client.CreateOrUpdate(ctx, id.ResourceGroup, OperationalInsightsResourceProvider, id.WorkspaceName, id.Name, params)
-	if err != nil {
+	if _, err = client.CreateOrUpdate(ctx, id.ResourceGroup, OperationalInsightsResourceProvider, id.WorkspaceName, id.Name, params); err != nil {
 		return fmt.Errorf("creating %s: %+v", id, err)
 	}
 
@@ -323,7 +320,7 @@ func resourceSentinelAutomationRuleCreateUpdate(d *schema.ResourceData, meta int
 	return resourceSentinelAutomationRuleRead(d, meta)
 }
 
-func resourceSentinelAutomationRuleRead(d *schema.ResourceData, meta interface{}) error {
+func resourceSentinelAutomationRuleRead(d *pluginsdk.ResourceData, meta interface{}) error {
 	client := meta.(*clients.Client).Sentinel.AutomationRulesClient
 	ctx, cancel := timeouts.ForRead(meta.(*clients.Client).StopContext, d)
 	defer cancel()
@@ -380,7 +377,7 @@ func resourceSentinelAutomationRuleRead(d *schema.ResourceData, meta interface{}
 	return nil
 }
 
-func resourceSentinelAutomationRuleDelete(d *schema.ResourceData, meta interface{}) error {
+func resourceSentinelAutomationRuleDelete(d *pluginsdk.ResourceData, meta interface{}) error {
 	client := meta.(*clients.Client).Sentinel.AutomationRulesClient
 	ctx, cancel := timeouts.ForDelete(meta.(*clients.Client).StopContext, d)
 	defer cancel()
@@ -390,8 +387,7 @@ func resourceSentinelAutomationRuleDelete(d *schema.ResourceData, meta interface
 		return err
 	}
 
-	_, err = client.Delete(ctx, id.ResourceGroup, OperationalInsightsResourceProvider, id.WorkspaceName, id.Name)
-	if err != nil {
+	if _, err = client.Delete(ctx, id.ResourceGroup, OperationalInsightsResourceProvider, id.WorkspaceName, id.Name); err != nil {
 		return fmt.Errorf("deleting %s: %+v", id, err)
 	}
 
@@ -448,7 +444,7 @@ func flattenAutomationRuleConditions(conditions *[]securityinsight.BasicAutomati
 	return out
 }
 
-func expandAutomationRuleActions(d *schema.ResourceData, defaultTenantId string) (*[]securityinsight.BasicAutomationRuleAction, error) {
+func expandAutomationRuleActions(d *pluginsdk.ResourceData, defaultTenantId string) (*[]securityinsight.BasicAutomationRuleAction, error) {
 	actionIncident, err := expandAutomationRuleActionIncident(d.Get("action_incident").([]interface{}))
 	if err != nil {
 		return nil, err
