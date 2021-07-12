@@ -12,6 +12,7 @@ type Client struct {
 	FirewallRulesClient               *postgresql.FirewallRulesClient
 	FlexibleServersClient             *postgresqlflexibleservers.ServersClient
 	FlexibleServerFirewallRuleClient  *postgresqlflexibleservers.FirewallRulesClient
+	FlexibleServerDatabaseClient      *postgresqlflexibleservers.DatabasesClient
 	ServersClient                     *postgresql.ServersClient
 	ServerKeysClient                  *postgresql.ServerKeysClient
 	ServerSecurityAlertPoliciesClient *postgresql.ServerSecurityAlertPoliciesClient
@@ -51,15 +52,19 @@ func NewClient(o *common.ClientOptions) *Client {
 	flexibleServersClient := postgresqlflexibleservers.NewServersClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
 	o.ConfigureClient(&flexibleServersClient.Client, o.ResourceManagerAuthorizer)
 
-	FlexibleServerFirewallRuleClient := postgresqlflexibleservers.NewFirewallRulesClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
-	o.ConfigureClient(&FlexibleServerFirewallRuleClient.Client, o.ResourceManagerAuthorizer)
+	flexibleServerFirewallRuleClient := postgresqlflexibleservers.NewFirewallRulesClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
+	o.ConfigureClient(&flexibleServerFirewallRuleClient.Client, o.ResourceManagerAuthorizer)
+
+	flexibleServerDatabaseClient := postgresqlflexibleservers.NewDatabasesClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
+	o.ConfigureClient(&flexibleServerDatabaseClient.Client, o.ResourceManagerAuthorizer)
 
 	return &Client{
 		ConfigurationsClient:              &configurationsClient,
 		DatabasesClient:                   &databasesClient,
 		FirewallRulesClient:               &firewallRulesClient,
 		FlexibleServersClient:             &flexibleServersClient,
-		FlexibleServerFirewallRuleClient:  &FlexibleServerFirewallRuleClient,
+		FlexibleServerFirewallRuleClient:  &flexibleServerFirewallRuleClient,
+		FlexibleServerDatabaseClient:      &flexibleServerDatabaseClient,
 		ServersClient:                     &serversClient,
 		ServerKeysClient:                  &serverKeysClient,
 		ServerSecurityAlertPoliciesClient: &serverSecurityAlertPoliciesClient,
