@@ -6,6 +6,7 @@ import (
 )
 
 type Client struct {
+	DataFlowClient               *datafactory.DataFlowsClient
 	DatasetClient                *datafactory.DatasetsClient
 	FactoriesClient              *datafactory.FactoriesClient
 	IntegrationRuntimesClient    *datafactory.IntegrationRuntimesClient
@@ -16,6 +17,9 @@ type Client struct {
 }
 
 func NewClient(o *common.ClientOptions) *Client {
+	dataFlowClient := datafactory.NewDataFlowsClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
+	o.ConfigureClient(&dataFlowClient.Client, o.ResourceManagerAuthorizer)
+
 	DatasetClient := datafactory.NewDatasetsClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
 	o.ConfigureClient(&DatasetClient.Client, o.ResourceManagerAuthorizer)
 
@@ -38,6 +42,7 @@ func NewClient(o *common.ClientOptions) *Client {
 	o.ConfigureClient(&TriggersClient.Client, o.ResourceManagerAuthorizer)
 
 	return &Client{
+		DataFlowClient:               &dataFlowClient,
 		DatasetClient:                &DatasetClient,
 		FactoriesClient:              &FactoriesClient,
 		IntegrationRuntimesClient:    &IntegrationRuntimesClient,
