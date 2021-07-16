@@ -11,7 +11,6 @@ import (
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/clients"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/applicationinsights/parse"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/pluginsdk"
-	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/tf/validation"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/timeouts"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/utils"
 )
@@ -32,14 +31,9 @@ func resourceApplicationInsightsSmartDetectionRule() *pluginsdk.Resource {
 
 		Schema: map[string]*pluginsdk.Schema{
 			"name": {
-				Type:     pluginsdk.TypeString,
-				Required: true,
-				ForceNew: true,
-				ValidateFunc: validation.StringInSlice([]string{
-					"Slow page load time",
-					"Slow server response time",
-					"Long dependency duration",
-				}, false),
+				Type:             pluginsdk.TypeString,
+				Required:         true,
+				ForceNew:         true,
 				DiffSuppressFunc: smartDetectionRuleNameDiff,
 			},
 
@@ -77,10 +71,7 @@ func resourceApplicationInsightsSmartDetectionRuleUpdate(d *pluginsdk.ResourceDa
 	defer cancel()
 
 	log.Printf("[INFO] preparing arguments for AzureRM Application Insights Samrt Detection Rule update.")
-
-	// The Smart Detection Rule name from the UI doesn't match what the API accepts.
-	// We'll have the user submit what the name looks like in the UI and trim it behind the scenes to match what the API accepts
-	name := strings.ToLower(strings.Join(strings.Split(d.Get("name").(string), " "), ""))
+	name := strings.Join(strings.Split(strings.ToLower(d.Get("name").(string)), " "), "")
 	appInsightsID := d.Get("application_insights_id").(string)
 
 	id, err := parse.ComponentID(appInsightsID)
@@ -176,6 +167,7 @@ func resourceApplicationInsightsSmartDetectionRuleDelete(d *pluginsdk.ResourceDa
 	return nil
 }
 
+// Update: We should move towards using internal rule name. The below comment will be obsolete soon.
 // The Smart Detection Rule name from the UI doesn't match what the API accepts.
 // This Diff checks that the name UI name matches the API name when spaces are removed
 func smartDetectionRuleNameDiff(_, old string, new string, _ *pluginsdk.ResourceData) bool {
