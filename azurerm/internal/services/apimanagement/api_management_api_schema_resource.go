@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Azure/azure-sdk-for-go/services/apimanagement/mgmt/2020-12-01/apimanagement"
+	"github.com/Azure/azure-sdk-for-go/services/preview/apimanagement/mgmt/2021-01-01-preview/apimanagement"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/tf"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/clients"
@@ -92,8 +92,8 @@ func resourceApiManagementApiSchemaCreateUpdate(d *pluginsdk.ResourceData, meta 
 	parameters := apimanagement.SchemaContract{
 		SchemaContractProperties: &apimanagement.SchemaContractProperties{
 			ContentType: &contentType,
-			SchemaDocumentProperties: &apimanagement.SchemaDocumentProperties{
-				Value: &value,
+			Document: map[string]string{
+				"value": value,
 			},
 		},
 	}
@@ -155,7 +155,7 @@ func resourceApiManagementApiSchemaRead(d *pluginsdk.ResourceData, meta interfac
 
 	if properties := resp.SchemaContractProperties; properties != nil {
 		d.Set("content_type", properties.ContentType)
-		if documentProperties := properties.SchemaDocumentProperties; documentProperties != nil {
+		if properties.Document != nil {
 			/*
 				As per https://docs.microsoft.com/en-us/rest/api/apimanagement/2019-12-01/api-schema/get#schemacontract
 
@@ -166,20 +166,21 @@ func resourceApiManagementApiSchemaRead(d *pluginsdk.ResourceData, meta interfac
 
 				Definitions used for Swagger/OpenAPI schemas only, otherwise Value is used
 			*/
+			document := properties.Document.(map[string]interface{})
 			switch *properties.ContentType {
 			case "application/vnd.ms-azure-apim.swagger.definitions+json", "application/vnd.oai.openapi.components+json":
-				if documentProperties.Definitions != nil {
-					value, err := json.Marshal(documentProperties.Definitions)
+				if v, ok := document["definitions"]; ok {
+					value, err := json.Marshal(v)
 					if err != nil {
-						return fmt.Errorf("[FATAL] Unable to serialize schema to json. Error: %+v. Schema struct: %+v", err, documentProperties.Definitions)
+						return fmt.Errorf("[FATAL] Unable to serialize schema to json. Error: %+v. Schema struct: %+v", err, v)
 					}
 					d.Set("value", string(value))
 				}
 			case "application/vnd.ms-azure-apim.xsd+xml", "application/vnd.ms-azure-apim.wadl.grammars+xml":
-				d.Set("value", documentProperties.Value)
+				d.Set("value", document["value"])
 			default:
 				log.Printf("[WARN] Unknown content type %q for schema %q (API Management Service %q / API %q / Resource Group %q)", *properties.ContentType, schemaID, serviceName, apiName, resourceGroup)
-				d.Set("value", documentProperties.Value)
+				d.Set("value", document["value"])
 			}
 		}
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Azure/azure-sdk-for-go/services/apimanagement/mgmt/2020-12-01/apimanagement"
+	"github.com/Azure/azure-sdk-for-go/services/preview/apimanagement/mgmt/2021-01-01-preview/apimanagement"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/clients"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/services/apimanagement/schemaz"
@@ -90,7 +90,7 @@ func dataSourceApiManagementProductRead(d *pluginsdk.ResourceData, meta interfac
 		d.Set("approval_required", props.ApprovalRequired)
 		d.Set("description", props.Description)
 		d.Set("display_name", props.DisplayName)
-		d.Set("published", props.State == apimanagement.Published)
+		d.Set("published", props.State == apimanagement.ProductStatePublished)
 		d.Set("subscriptions_limit", props.SubscriptionsLimit)
 		d.Set("subscription_required", props.SubscriptionRequired)
 		d.Set("terms", props.Terms)

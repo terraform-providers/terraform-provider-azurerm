@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Azure/azure-sdk-for-go/services/apimanagement/mgmt/2020-12-01/apimanagement"
+	"github.com/Azure/azure-sdk-for-go/services/preview/apimanagement/mgmt/2021-01-01-preview/apimanagement"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/tf"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/clients"
@@ -140,10 +140,10 @@ func resourceApiManagementLoggerCreate(d *pluginsdk.ResourceData, meta interface
 	}
 
 	if len(eventHubRaw) > 0 {
-		parameters.LoggerType = apimanagement.AzureEventHub
+		parameters.LoggerType = apimanagement.LoggerTypeAzureEventHub
 		parameters.Credentials = expandApiManagementLoggerEventHub(eventHubRaw)
 	} else if len(appInsightsRaw) > 0 {
-		parameters.LoggerType = apimanagement.ApplicationInsights
+		parameters.LoggerType = apimanagement.LoggerTypeApplicationInsights
 		parameters.Credentials = expandApiManagementLoggerApplicationInsights(appInsightsRaw)
 	}
 
@@ -226,10 +226,10 @@ func resourceApiManagementLoggerUpdate(d *pluginsdk.ResourceData, meta interface
 	}
 
 	if hasEventHub {
-		parameters.LoggerType = apimanagement.AzureEventHub
+		parameters.LoggerType = apimanagement.LoggerTypeAzureEventHub
 		parameters.Credentials = expandApiManagementLoggerEventHub(eventHubRaw.([]interface{}))
 	} else if hasAppInsights {
-		parameters.LoggerType = apimanagement.ApplicationInsights
+		parameters.LoggerType = apimanagement.LoggerTypeApplicationInsights
 		parameters.Credentials = expandApiManagementLoggerApplicationInsights(appInsightsRaw.([]interface{}))
 	}
 
