@@ -474,20 +474,21 @@ func resourceKeyVaultCertificateCreate(d *pluginsdk.ResourceData, meta interface
 
 		log.Printf("[DEBUG] Waiting for Key Vault Certificate %q in Vault %q to be provisioned", name, *keyVaultBaseUrl)
 		stateConf := &pluginsdk.StateChangeConf{
-			Pending:    []string{"Provisioning"},
-			Target:     []string{"Ready"},
-			Refresh:    keyVaultCertificateCreationRefreshFunc(ctx, client, *keyVaultBaseUrl, name),
-			MinTimeout: 15 * time.Second,
-			Timeout:    d.Timeout(pluginsdk.TimeoutCreate),
+			Pending:      []string{"Provisioning"},
+			Target:       []string{"Ready"},
+			Refresh:      keyVaultCertificateCreationRefreshFunc(ctx, client, *keyVaultBaseUrl, name),
+			PollInterval: 10 * time.Second,
+			MinTimeout:   15 * time.Second,
+			Timeout:      d.Timeout(pluginsdk.TimeoutCreate),
 		}
 		// It has been observed that at least one certificate issuer responds to a request with manual processing by issuer staff. SLA's may differ among issuers.
 		// The total create timeout duration is divided by a modified poll interval of 30s to calculate the number of times to allow not found instead of the default 20.
 		// Using math.Floor, the calculation will err on the lower side of the creation timeout, so as to return before the overall create timeout occurs.
 		if policy != nil && policy.IssuerParameters != nil && policy.IssuerParameters.Name != nil && *policy.IssuerParameters.Name != "Self" {
 			stateConf.PollInterval = 30 * time.Second
-			stateConf.NotFoundChecks = int(math.Floor(float64(stateConf.Timeout) / float64(stateConf.PollInterval)))
 		}
 
+		stateConf.NotFoundChecks = int(math.Floor(float64(stateConf.Timeout) / float64(stateConf.PollInterval)))
 		if _, err := stateConf.WaitForStateContext(ctx); err != nil {
 			return fmt.Errorf("Error waiting for Certificate %q in Vault %q to become available: %s", name, *keyVaultBaseUrl, err)
 		}
