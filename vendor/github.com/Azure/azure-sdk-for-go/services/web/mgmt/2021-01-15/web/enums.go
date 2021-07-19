@@ -10,120 +10,120 @@ package web
 type AppServicePlanRestrictions string
 
 const (
-	// Basic ...
-	Basic AppServicePlanRestrictions = "Basic"
-	// Free ...
-	Free AppServicePlanRestrictions = "Free"
-	// None ...
-	None AppServicePlanRestrictions = "None"
-	// Premium ...
-	Premium AppServicePlanRestrictions = "Premium"
-	// Shared ...
-	Shared AppServicePlanRestrictions = "Shared"
-	// Standard ...
-	Standard AppServicePlanRestrictions = "Standard"
+	// AppServicePlanRestrictionsBasic ...
+	AppServicePlanRestrictionsBasic AppServicePlanRestrictions = "Basic"
+	// AppServicePlanRestrictionsFree ...
+	AppServicePlanRestrictionsFree AppServicePlanRestrictions = "Free"
+	// AppServicePlanRestrictionsNone ...
+	AppServicePlanRestrictionsNone AppServicePlanRestrictions = "None"
+	// AppServicePlanRestrictionsPremium ...
+	AppServicePlanRestrictionsPremium AppServicePlanRestrictions = "Premium"
+	// AppServicePlanRestrictionsShared ...
+	AppServicePlanRestrictionsShared AppServicePlanRestrictions = "Shared"
+	// AppServicePlanRestrictionsStandard ...
+	AppServicePlanRestrictionsStandard AppServicePlanRestrictions = "Standard"
 )
 
 // PossibleAppServicePlanRestrictionsValues returns an array of possible values for the AppServicePlanRestrictions const type.
 func PossibleAppServicePlanRestrictionsValues() []AppServicePlanRestrictions {
-	return []AppServicePlanRestrictions{Basic, Free, None, Premium, Shared, Standard}
+	return []AppServicePlanRestrictions{AppServicePlanRestrictionsBasic, AppServicePlanRestrictionsFree, AppServicePlanRestrictionsNone, AppServicePlanRestrictionsPremium, AppServicePlanRestrictionsShared, AppServicePlanRestrictionsStandard}
 }
 
 // AutoHealActionType enumerates the values for auto heal action type.
 type AutoHealActionType string
 
 const (
-	// CustomAction ...
-	CustomAction AutoHealActionType = "CustomAction"
-	// LogEvent ...
-	LogEvent AutoHealActionType = "LogEvent"
-	// Recycle ...
-	Recycle AutoHealActionType = "Recycle"
+	// AutoHealActionTypeCustomAction ...
+	AutoHealActionTypeCustomAction AutoHealActionType = "CustomAction"
+	// AutoHealActionTypeLogEvent ...
+	AutoHealActionTypeLogEvent AutoHealActionType = "LogEvent"
+	// AutoHealActionTypeRecycle ...
+	AutoHealActionTypeRecycle AutoHealActionType = "Recycle"
 )
 
 // PossibleAutoHealActionTypeValues returns an array of possible values for the AutoHealActionType const type.
 func PossibleAutoHealActionTypeValues() []AutoHealActionType {
-	return []AutoHealActionType{CustomAction, LogEvent, Recycle}
+	return []AutoHealActionType{AutoHealActionTypeCustomAction, AutoHealActionTypeLogEvent, AutoHealActionTypeRecycle}
 }
 
 // AzureResourceType enumerates the values for azure resource type.
 type AzureResourceType string
 
 const (
-	// TrafficManager ...
-	TrafficManager AzureResourceType = "TrafficManager"
-	// Website ...
-	Website AzureResourceType = "Website"
+	// AzureResourceTypeTrafficManager ...
+	AzureResourceTypeTrafficManager AzureResourceType = "TrafficManager"
+	// AzureResourceTypeWebsite ...
+	AzureResourceTypeWebsite AzureResourceType = "Website"
 )
 
 // PossibleAzureResourceTypeValues returns an array of possible values for the AzureResourceType const type.
 func PossibleAzureResourceTypeValues() []AzureResourceType {
-	return []AzureResourceType{TrafficManager, Website}
+	return []AzureResourceType{AzureResourceTypeTrafficManager, AzureResourceTypeWebsite}
 }
 
 // AzureStorageState enumerates the values for azure storage state.
 type AzureStorageState string
 
 const (
-	// InvalidCredentials ...
-	InvalidCredentials AzureStorageState = "InvalidCredentials"
-	// InvalidShare ...
-	InvalidShare AzureStorageState = "InvalidShare"
-	// NotValidated ...
-	NotValidated AzureStorageState = "NotValidated"
-	// Ok ...
-	Ok AzureStorageState = "Ok"
+	// AzureStorageStateInvalidCredentials ...
+	AzureStorageStateInvalidCredentials AzureStorageState = "InvalidCredentials"
+	// AzureStorageStateInvalidShare ...
+	AzureStorageStateInvalidShare AzureStorageState = "InvalidShare"
+	// AzureStorageStateNotValidated ...
+	AzureStorageStateNotValidated AzureStorageState = "NotValidated"
+	// AzureStorageStateOk ...
+	AzureStorageStateOk AzureStorageState = "Ok"
 )
 
 // PossibleAzureStorageStateValues returns an array of possible values for the AzureStorageState const type.
 func PossibleAzureStorageStateValues() []AzureStorageState {
-	return []AzureStorageState{InvalidCredentials, InvalidShare, NotValidated, Ok}
+	return []AzureStorageState{AzureStorageStateInvalidCredentials, AzureStorageStateInvalidShare, AzureStorageStateNotValidated, AzureStorageStateOk}
 }
 
 // AzureStorageType enumerates the values for azure storage type.
 type AzureStorageType string
 
 const (
-	// AzureBlob ...
-	AzureBlob AzureStorageType = "AzureBlob"
-	// AzureFiles ...
-	AzureFiles AzureStorageType = "AzureFiles"
+	// AzureStorageTypeAzureBlob ...
+	AzureStorageTypeAzureBlob AzureStorageType = "AzureBlob"
+	// AzureStorageTypeAzureFiles ...
+	AzureStorageTypeAzureFiles AzureStorageType = "AzureFiles"
 )
 
 // PossibleAzureStorageTypeValues returns an array of possible values for the AzureStorageType const type.
 func PossibleAzureStorageTypeValues() []AzureStorageType {
-	return []AzureStorageType{AzureBlob, AzureFiles}
+	return []AzureStorageType{AzureStorageTypeAzureBlob, AzureStorageTypeAzureFiles}
 }
 
 // BackupItemStatus enumerates the values for backup item status.
 type BackupItemStatus string
 
 const (
-	// Created ...
-	Created BackupItemStatus = "Created"
-	// Deleted ...
-	Deleted BackupItemStatus = "Deleted"
-	// DeleteFailed ...
-	DeleteFailed BackupItemStatus = "DeleteFailed"
-	// DeleteInProgress ...
-	DeleteInProgress BackupItemStatus = "DeleteInProgress"
-	// Failed ...
-	Failed BackupItemStatus = "Failed"
-	// InProgress ...
-	InProgress BackupItemStatus = "InProgress"
-	// PartiallySucceeded ...
-	PartiallySucceeded BackupItemStatus = "PartiallySucceeded"
-	// Skipped ...
-	Skipped BackupItemStatus = "Skipped"
-	// Succeeded ...
-	Succeeded BackupItemStatus = "Succeeded"
-	// TimedOut ...
-	TimedOut BackupItemStatus = "TimedOut"
+	// BackupItemStatusCreated ...
+	BackupItemStatusCreated BackupItemStatus = "Created"
+	// BackupItemStatusDeleted ...
+	BackupItemStatusDeleted BackupItemStatus = "Deleted"
+	// BackupItemStatusDeleteFailed ...
+	BackupItemStatusDeleteFailed BackupItemStatus = "DeleteFailed"
+	// BackupItemStatusDeleteInProgress ...
+	BackupItemStatusDeleteInProgress BackupItemStatus = "DeleteInProgress"
+	// BackupItemStatusFailed ...
+	BackupItemStatusFailed BackupItemStatus = "Failed"
+	// BackupItemStatusInProgress ...
+	BackupItemStatusInProgress BackupItemStatus = "InProgress"
+	// BackupItemStatusPartiallySucceeded ...
+	BackupItemStatusPartiallySucceeded BackupItemStatus = "PartiallySucceeded"
+	// BackupItemStatusSkipped ...
+	BackupItemStatusSkipped BackupItemStatus = "Skipped"
+	// BackupItemStatusSucceeded ...
+	BackupItemStatusSucceeded BackupItemStatus = "Succeeded"
+	// BackupItemStatusTimedOut ...
+	BackupItemStatusTimedOut BackupItemStatus = "TimedOut"
 )
 
 // PossibleBackupItemStatusValues returns an array of possible values for the BackupItemStatus const type.
 func PossibleBackupItemStatusValues() []BackupItemStatus {
-	return []BackupItemStatus{Created, Deleted, DeleteFailed, DeleteInProgress, Failed, InProgress, PartiallySucceeded, Skipped, Succeeded, TimedOut}
+	return []BackupItemStatus{BackupItemStatusCreated, BackupItemStatusDeleted, BackupItemStatusDeleteFailed, BackupItemStatusDeleteInProgress, BackupItemStatusFailed, BackupItemStatusInProgress, BackupItemStatusPartiallySucceeded, BackupItemStatusSkipped, BackupItemStatusSucceeded, BackupItemStatusTimedOut}
 }
 
 // BackupRestoreOperationType enumerates the values for backup restore operation type.
@@ -199,106 +199,106 @@ func PossibleBuiltInAuthenticationProviderValues() []BuiltInAuthenticationProvid
 type CertificateOrderActionType string
 
 const (
-	// CertificateExpirationWarning ...
-	CertificateExpirationWarning CertificateOrderActionType = "CertificateExpirationWarning"
-	// CertificateExpired ...
-	CertificateExpired CertificateOrderActionType = "CertificateExpired"
-	// CertificateIssued ...
-	CertificateIssued CertificateOrderActionType = "CertificateIssued"
-	// CertificateOrderCanceled ...
-	CertificateOrderCanceled CertificateOrderActionType = "CertificateOrderCanceled"
-	// CertificateOrderCreated ...
-	CertificateOrderCreated CertificateOrderActionType = "CertificateOrderCreated"
-	// CertificateRevoked ...
-	CertificateRevoked CertificateOrderActionType = "CertificateRevoked"
-	// DomainValidationComplete ...
-	DomainValidationComplete CertificateOrderActionType = "DomainValidationComplete"
-	// FraudCleared ...
-	FraudCleared CertificateOrderActionType = "FraudCleared"
-	// FraudDetected ...
-	FraudDetected CertificateOrderActionType = "FraudDetected"
-	// FraudDocumentationRequired ...
-	FraudDocumentationRequired CertificateOrderActionType = "FraudDocumentationRequired"
-	// OrgNameChange ...
-	OrgNameChange CertificateOrderActionType = "OrgNameChange"
-	// OrgValidationComplete ...
-	OrgValidationComplete CertificateOrderActionType = "OrgValidationComplete"
-	// SanDrop ...
-	SanDrop CertificateOrderActionType = "SanDrop"
-	// Unknown ...
-	Unknown CertificateOrderActionType = "Unknown"
+	// CertificateOrderActionTypeCertificateExpirationWarning ...
+	CertificateOrderActionTypeCertificateExpirationWarning CertificateOrderActionType = "CertificateExpirationWarning"
+	// CertificateOrderActionTypeCertificateExpired ...
+	CertificateOrderActionTypeCertificateExpired CertificateOrderActionType = "CertificateExpired"
+	// CertificateOrderActionTypeCertificateIssued ...
+	CertificateOrderActionTypeCertificateIssued CertificateOrderActionType = "CertificateIssued"
+	// CertificateOrderActionTypeCertificateOrderCanceled ...
+	CertificateOrderActionTypeCertificateOrderCanceled CertificateOrderActionType = "CertificateOrderCanceled"
+	// CertificateOrderActionTypeCertificateOrderCreated ...
+	CertificateOrderActionTypeCertificateOrderCreated CertificateOrderActionType = "CertificateOrderCreated"
+	// CertificateOrderActionTypeCertificateRevoked ...
+	CertificateOrderActionTypeCertificateRevoked CertificateOrderActionType = "CertificateRevoked"
+	// CertificateOrderActionTypeDomainValidationComplete ...
+	CertificateOrderActionTypeDomainValidationComplete CertificateOrderActionType = "DomainValidationComplete"
+	// CertificateOrderActionTypeFraudCleared ...
+	CertificateOrderActionTypeFraudCleared CertificateOrderActionType = "FraudCleared"
+	// CertificateOrderActionTypeFraudDetected ...
+	CertificateOrderActionTypeFraudDetected CertificateOrderActionType = "FraudDetected"
+	// CertificateOrderActionTypeFraudDocumentationRequired ...
+	CertificateOrderActionTypeFraudDocumentationRequired CertificateOrderActionType = "FraudDocumentationRequired"
+	// CertificateOrderActionTypeOrgNameChange ...
+	CertificateOrderActionTypeOrgNameChange CertificateOrderActionType = "OrgNameChange"
+	// CertificateOrderActionTypeOrgValidationComplete ...
+	CertificateOrderActionTypeOrgValidationComplete CertificateOrderActionType = "OrgValidationComplete"
+	// CertificateOrderActionTypeSanDrop ...
+	CertificateOrderActionTypeSanDrop CertificateOrderActionType = "SanDrop"
+	// CertificateOrderActionTypeUnknown ...
+	CertificateOrderActionTypeUnknown CertificateOrderActionType = "Unknown"
 )
 
 // PossibleCertificateOrderActionTypeValues returns an array of possible values for the CertificateOrderActionType const type.
 func PossibleCertificateOrderActionTypeValues() []CertificateOrderActionType {
-	return []CertificateOrderActionType{CertificateExpirationWarning, CertificateExpired, CertificateIssued, CertificateOrderCanceled, CertificateOrderCreated, CertificateRevoked, DomainValidationComplete, FraudCleared, FraudDetected, FraudDocumentationRequired, OrgNameChange, OrgValidationComplete, SanDrop, Unknown}
+	return []CertificateOrderActionType{CertificateOrderActionTypeCertificateExpirationWarning, CertificateOrderActionTypeCertificateExpired, CertificateOrderActionTypeCertificateIssued, CertificateOrderActionTypeCertificateOrderCanceled, CertificateOrderActionTypeCertificateOrderCreated, CertificateOrderActionTypeCertificateRevoked, CertificateOrderActionTypeDomainValidationComplete, CertificateOrderActionTypeFraudCleared, CertificateOrderActionTypeFraudDetected, CertificateOrderActionTypeFraudDocumentationRequired, CertificateOrderActionTypeOrgNameChange, CertificateOrderActionTypeOrgValidationComplete, CertificateOrderActionTypeSanDrop, CertificateOrderActionTypeUnknown}
 }
 
 // CertificateOrderStatus enumerates the values for certificate order status.
 type CertificateOrderStatus string
 
 const (
-	// Canceled ...
-	Canceled CertificateOrderStatus = "Canceled"
-	// Denied ...
-	Denied CertificateOrderStatus = "Denied"
-	// Expired ...
-	Expired CertificateOrderStatus = "Expired"
-	// Issued ...
-	Issued CertificateOrderStatus = "Issued"
-	// NotSubmitted ...
-	NotSubmitted CertificateOrderStatus = "NotSubmitted"
-	// Pendingissuance ...
-	Pendingissuance CertificateOrderStatus = "Pendingissuance"
-	// PendingRekey ...
-	PendingRekey CertificateOrderStatus = "PendingRekey"
-	// Pendingrevocation ...
-	Pendingrevocation CertificateOrderStatus = "Pendingrevocation"
-	// Revoked ...
-	Revoked CertificateOrderStatus = "Revoked"
-	// Unused ...
-	Unused CertificateOrderStatus = "Unused"
+	// CertificateOrderStatusCanceled ...
+	CertificateOrderStatusCanceled CertificateOrderStatus = "Canceled"
+	// CertificateOrderStatusDenied ...
+	CertificateOrderStatusDenied CertificateOrderStatus = "Denied"
+	// CertificateOrderStatusExpired ...
+	CertificateOrderStatusExpired CertificateOrderStatus = "Expired"
+	// CertificateOrderStatusIssued ...
+	CertificateOrderStatusIssued CertificateOrderStatus = "Issued"
+	// CertificateOrderStatusNotSubmitted ...
+	CertificateOrderStatusNotSubmitted CertificateOrderStatus = "NotSubmitted"
+	// CertificateOrderStatusPendingissuance ...
+	CertificateOrderStatusPendingissuance CertificateOrderStatus = "Pendingissuance"
+	// CertificateOrderStatusPendingRekey ...
+	CertificateOrderStatusPendingRekey CertificateOrderStatus = "PendingRekey"
+	// CertificateOrderStatusPendingrevocation ...
+	CertificateOrderStatusPendingrevocation CertificateOrderStatus = "Pendingrevocation"
+	// CertificateOrderStatusRevoked ...
+	CertificateOrderStatusRevoked CertificateOrderStatus = "Revoked"
+	// CertificateOrderStatusUnused ...
+	CertificateOrderStatusUnused CertificateOrderStatus = "Unused"
 )
 
 // PossibleCertificateOrderStatusValues returns an array of possible values for the CertificateOrderStatus const type.
 func PossibleCertificateOrderStatusValues() []CertificateOrderStatus {
-	return []CertificateOrderStatus{Canceled, Denied, Expired, Issued, NotSubmitted, Pendingissuance, PendingRekey, Pendingrevocation, Revoked, Unused}
+	return []CertificateOrderStatus{CertificateOrderStatusCanceled, CertificateOrderStatusDenied, CertificateOrderStatusExpired, CertificateOrderStatusIssued, CertificateOrderStatusNotSubmitted, CertificateOrderStatusPendingissuance, CertificateOrderStatusPendingRekey, CertificateOrderStatusPendingrevocation, CertificateOrderStatusRevoked, CertificateOrderStatusUnused}
 }
 
 // CertificateProductType enumerates the values for certificate product type.
 type CertificateProductType string
 
 const (
-	// StandardDomainValidatedSsl ...
-	StandardDomainValidatedSsl CertificateProductType = "StandardDomainValidatedSsl"
-	// StandardDomainValidatedWildCardSsl ...
-	StandardDomainValidatedWildCardSsl CertificateProductType = "StandardDomainValidatedWildCardSsl"
+	// CertificateProductTypeStandardDomainValidatedSsl ...
+	CertificateProductTypeStandardDomainValidatedSsl CertificateProductType = "StandardDomainValidatedSsl"
+	// CertificateProductTypeStandardDomainValidatedWildCardSsl ...
+	CertificateProductTypeStandardDomainValidatedWildCardSsl CertificateProductType = "StandardDomainValidatedWildCardSsl"
 )
 
 // PossibleCertificateProductTypeValues returns an array of possible values for the CertificateProductType const type.
 func PossibleCertificateProductTypeValues() []CertificateProductType {
-	return []CertificateProductType{StandardDomainValidatedSsl, StandardDomainValidatedWildCardSsl}
+	return []CertificateProductType{CertificateProductTypeStandardDomainValidatedSsl, CertificateProductTypeStandardDomainValidatedWildCardSsl}
 }
 
 // Channels enumerates the values for channels.
 type Channels string
 
 const (
-	// All ...
-	All Channels = "All"
-	// API ...
-	API Channels = "Api"
-	// Email ...
-	Email Channels = "Email"
-	// Notification ...
-	Notification Channels = "Notification"
-	// Webhook ...
-	Webhook Channels = "Webhook"
+	// ChannelsAll ...
+	ChannelsAll Channels = "All"
+	// ChannelsAPI ...
+	ChannelsAPI Channels = "Api"
+	// ChannelsEmail ...
+	ChannelsEmail Channels = "Email"
+	// ChannelsNotification ...
+	ChannelsNotification Channels = "Notification"
+	// ChannelsWebhook ...
+	ChannelsWebhook Channels = "Webhook"
 )
 
 // PossibleChannelsValues returns an array of possible values for the Channels const type.
 func PossibleChannelsValues() []Channels {
-	return []Channels{All, API, Email, Notification, Webhook}
+	return []Channels{ChannelsAll, ChannelsAPI, ChannelsEmail, ChannelsNotification, ChannelsWebhook}
 }
 
 // CheckNameResourceTypes enumerates the values for check name resource types.
@@ -332,47 +332,47 @@ func PossibleCheckNameResourceTypesValues() []CheckNameResourceTypes {
 type ClientCertMode string
 
 const (
-	// Optional ...
-	Optional ClientCertMode = "Optional"
-	// OptionalInteractiveUser ...
-	OptionalInteractiveUser ClientCertMode = "OptionalInteractiveUser"
-	// Required ...
-	Required ClientCertMode = "Required"
+	// ClientCertModeOptional ...
+	ClientCertModeOptional ClientCertMode = "Optional"
+	// ClientCertModeOptionalInteractiveUser ...
+	ClientCertModeOptionalInteractiveUser ClientCertMode = "OptionalInteractiveUser"
+	// ClientCertModeRequired ...
+	ClientCertModeRequired ClientCertMode = "Required"
 )
 
 // PossibleClientCertModeValues returns an array of possible values for the ClientCertMode const type.
 func PossibleClientCertModeValues() []ClientCertMode {
-	return []ClientCertMode{Optional, OptionalInteractiveUser, Required}
+	return []ClientCertMode{ClientCertModeOptional, ClientCertModeOptionalInteractiveUser, ClientCertModeRequired}
 }
 
 // ClientCredentialMethod enumerates the values for client credential method.
 type ClientCredentialMethod string
 
 const (
-	// ClientSecretPost ...
-	ClientSecretPost ClientCredentialMethod = "ClientSecretPost"
+	// ClientCredentialMethodClientSecretPost ...
+	ClientCredentialMethodClientSecretPost ClientCredentialMethod = "ClientSecretPost"
 )
 
 // PossibleClientCredentialMethodValues returns an array of possible values for the ClientCredentialMethod const type.
 func PossibleClientCredentialMethodValues() []ClientCredentialMethod {
-	return []ClientCredentialMethod{ClientSecretPost}
+	return []ClientCredentialMethod{ClientCredentialMethodClientSecretPost}
 }
 
 // CloneAbilityResult enumerates the values for clone ability result.
 type CloneAbilityResult string
 
 const (
-	// Cloneable ...
-	Cloneable CloneAbilityResult = "Cloneable"
-	// NotCloneable ...
-	NotCloneable CloneAbilityResult = "NotCloneable"
-	// PartiallyCloneable ...
-	PartiallyCloneable CloneAbilityResult = "PartiallyCloneable"
+	// CloneAbilityResultCloneable ...
+	CloneAbilityResultCloneable CloneAbilityResult = "Cloneable"
+	// CloneAbilityResultNotCloneable ...
+	CloneAbilityResultNotCloneable CloneAbilityResult = "NotCloneable"
+	// CloneAbilityResultPartiallyCloneable ...
+	CloneAbilityResultPartiallyCloneable CloneAbilityResult = "PartiallyCloneable"
 )
 
 // PossibleCloneAbilityResultValues returns an array of possible values for the CloneAbilityResult const type.
 func PossibleCloneAbilityResultValues() []CloneAbilityResult {
-	return []CloneAbilityResult{Cloneable, NotCloneable, PartiallyCloneable}
+	return []CloneAbilityResult{CloneAbilityResultCloneable, CloneAbilityResultNotCloneable, CloneAbilityResultPartiallyCloneable}
 }
 
 // ComputeModeOptions enumerates the values for compute mode options.
@@ -396,82 +396,82 @@ func PossibleComputeModeOptionsValues() []ComputeModeOptions {
 type ConfigReferenceSource string
 
 const (
-	// KeyVault ...
-	KeyVault ConfigReferenceSource = "KeyVault"
+	// ConfigReferenceSourceKeyVault ...
+	ConfigReferenceSourceKeyVault ConfigReferenceSource = "KeyVault"
 )
 
 // PossibleConfigReferenceSourceValues returns an array of possible values for the ConfigReferenceSource const type.
 func PossibleConfigReferenceSourceValues() []ConfigReferenceSource {
-	return []ConfigReferenceSource{KeyVault}
+	return []ConfigReferenceSource{ConfigReferenceSourceKeyVault}
 }
 
 // ConnectionStringType enumerates the values for connection string type.
 type ConnectionStringType string
 
 const (
-	// APIHub ...
-	APIHub ConnectionStringType = "ApiHub"
-	// Custom ...
-	Custom ConnectionStringType = "Custom"
-	// DocDb ...
-	DocDb ConnectionStringType = "DocDb"
-	// EventHub ...
-	EventHub ConnectionStringType = "EventHub"
-	// MySQL ...
-	MySQL ConnectionStringType = "MySql"
-	// NotificationHub ...
-	NotificationHub ConnectionStringType = "NotificationHub"
-	// PostgreSQL ...
-	PostgreSQL ConnectionStringType = "PostgreSQL"
-	// RedisCache ...
-	RedisCache ConnectionStringType = "RedisCache"
-	// ServiceBus ...
-	ServiceBus ConnectionStringType = "ServiceBus"
-	// SQLAzure ...
-	SQLAzure ConnectionStringType = "SQLAzure"
-	// SQLServer ...
-	SQLServer ConnectionStringType = "SQLServer"
+	// ConnectionStringTypeAPIHub ...
+	ConnectionStringTypeAPIHub ConnectionStringType = "ApiHub"
+	// ConnectionStringTypeCustom ...
+	ConnectionStringTypeCustom ConnectionStringType = "Custom"
+	// ConnectionStringTypeDocDb ...
+	ConnectionStringTypeDocDb ConnectionStringType = "DocDb"
+	// ConnectionStringTypeEventHub ...
+	ConnectionStringTypeEventHub ConnectionStringType = "EventHub"
+	// ConnectionStringTypeMySQL ...
+	ConnectionStringTypeMySQL ConnectionStringType = "MySql"
+	// ConnectionStringTypeNotificationHub ...
+	ConnectionStringTypeNotificationHub ConnectionStringType = "NotificationHub"
+	// ConnectionStringTypePostgreSQL ...
+	ConnectionStringTypePostgreSQL ConnectionStringType = "PostgreSQL"
+	// ConnectionStringTypeRedisCache ...
+	ConnectionStringTypeRedisCache ConnectionStringType = "RedisCache"
+	// ConnectionStringTypeServiceBus ...
+	ConnectionStringTypeServiceBus ConnectionStringType = "ServiceBus"
+	// ConnectionStringTypeSQLAzure ...
+	ConnectionStringTypeSQLAzure ConnectionStringType = "SQLAzure"
+	// ConnectionStringTypeSQLServer ...
+	ConnectionStringTypeSQLServer ConnectionStringType = "SQLServer"
 )
 
 // PossibleConnectionStringTypeValues returns an array of possible values for the ConnectionStringType const type.
 func PossibleConnectionStringTypeValues() []ConnectionStringType {
-	return []ConnectionStringType{APIHub, Custom, DocDb, EventHub, MySQL, NotificationHub, PostgreSQL, RedisCache, ServiceBus, SQLAzure, SQLServer}
+	return []ConnectionStringType{ConnectionStringTypeAPIHub, ConnectionStringTypeCustom, ConnectionStringTypeDocDb, ConnectionStringTypeEventHub, ConnectionStringTypeMySQL, ConnectionStringTypeNotificationHub, ConnectionStringTypePostgreSQL, ConnectionStringTypeRedisCache, ConnectionStringTypeServiceBus, ConnectionStringTypeSQLAzure, ConnectionStringTypeSQLServer}
 }
 
 // ContinuousWebJobStatus enumerates the values for continuous web job status.
 type ContinuousWebJobStatus string
 
 const (
-	// Initializing ...
-	Initializing ContinuousWebJobStatus = "Initializing"
-	// PendingRestart ...
-	PendingRestart ContinuousWebJobStatus = "PendingRestart"
-	// Running ...
-	Running ContinuousWebJobStatus = "Running"
-	// Starting ...
-	Starting ContinuousWebJobStatus = "Starting"
-	// Stopped ...
-	Stopped ContinuousWebJobStatus = "Stopped"
+	// ContinuousWebJobStatusInitializing ...
+	ContinuousWebJobStatusInitializing ContinuousWebJobStatus = "Initializing"
+	// ContinuousWebJobStatusPendingRestart ...
+	ContinuousWebJobStatusPendingRestart ContinuousWebJobStatus = "PendingRestart"
+	// ContinuousWebJobStatusRunning ...
+	ContinuousWebJobStatusRunning ContinuousWebJobStatus = "Running"
+	// ContinuousWebJobStatusStarting ...
+	ContinuousWebJobStatusStarting ContinuousWebJobStatus = "Starting"
+	// ContinuousWebJobStatusStopped ...
+	ContinuousWebJobStatusStopped ContinuousWebJobStatus = "Stopped"
 )
 
 // PossibleContinuousWebJobStatusValues returns an array of possible values for the ContinuousWebJobStatus const type.
 func PossibleContinuousWebJobStatusValues() []ContinuousWebJobStatus {
-	return []ContinuousWebJobStatus{Initializing, PendingRestart, Running, Starting, Stopped}
+	return []ContinuousWebJobStatus{ContinuousWebJobStatusInitializing, ContinuousWebJobStatusPendingRestart, ContinuousWebJobStatusRunning, ContinuousWebJobStatusStarting, ContinuousWebJobStatusStopped}
 }
 
 // CookieExpirationConvention enumerates the values for cookie expiration convention.
 type CookieExpirationConvention string
 
 const (
-	// FixedTime ...
-	FixedTime CookieExpirationConvention = "FixedTime"
-	// IdentityProviderDerived ...
-	IdentityProviderDerived CookieExpirationConvention = "IdentityProviderDerived"
+	// CookieExpirationConventionFixedTime ...
+	CookieExpirationConventionFixedTime CookieExpirationConvention = "FixedTime"
+	// CookieExpirationConventionIdentityProviderDerived ...
+	CookieExpirationConventionIdentityProviderDerived CookieExpirationConvention = "IdentityProviderDerived"
 )
 
 // PossibleCookieExpirationConventionValues returns an array of possible values for the CookieExpirationConvention const type.
 func PossibleCookieExpirationConventionValues() []CookieExpirationConvention {
-	return []CookieExpirationConvention{FixedTime, IdentityProviderDerived}
+	return []CookieExpirationConvention{CookieExpirationConventionFixedTime, CookieExpirationConventionIdentityProviderDerived}
 }
 
 // CustomDomainStatus enumerates the values for custom domain status.
@@ -501,15 +501,15 @@ func PossibleCustomDomainStatusValues() []CustomDomainStatus {
 type CustomHostNameDNSRecordType string
 
 const (
-	// A ...
-	A CustomHostNameDNSRecordType = "A"
-	// CName ...
-	CName CustomHostNameDNSRecordType = "CName"
+	// CustomHostNameDNSRecordTypeA ...
+	CustomHostNameDNSRecordTypeA CustomHostNameDNSRecordType = "A"
+	// CustomHostNameDNSRecordTypeCName ...
+	CustomHostNameDNSRecordTypeCName CustomHostNameDNSRecordType = "CName"
 )
 
 // PossibleCustomHostNameDNSRecordTypeValues returns an array of possible values for the CustomHostNameDNSRecordType const type.
 func PossibleCustomHostNameDNSRecordTypeValues() []CustomHostNameDNSRecordType {
-	return []CustomHostNameDNSRecordType{A, CName}
+	return []CustomHostNameDNSRecordType{CustomHostNameDNSRecordTypeA, CustomHostNameDNSRecordTypeCName}
 }
 
 // DatabaseType enumerates the values for database type.
@@ -535,32 +535,32 @@ func PossibleDatabaseTypeValues() []DatabaseType {
 type DetectorType string
 
 const (
-	// Analysis ...
-	Analysis DetectorType = "Analysis"
-	// CategoryOverview ...
-	CategoryOverview DetectorType = "CategoryOverview"
-	// Detector ...
-	Detector DetectorType = "Detector"
+	// DetectorTypeAnalysis ...
+	DetectorTypeAnalysis DetectorType = "Analysis"
+	// DetectorTypeCategoryOverview ...
+	DetectorTypeCategoryOverview DetectorType = "CategoryOverview"
+	// DetectorTypeDetector ...
+	DetectorTypeDetector DetectorType = "Detector"
 )
 
 // PossibleDetectorTypeValues returns an array of possible values for the DetectorType const type.
 func PossibleDetectorTypeValues() []DetectorType {
-	return []DetectorType{Analysis, CategoryOverview, Detector}
+	return []DetectorType{DetectorTypeAnalysis, DetectorTypeCategoryOverview, DetectorTypeDetector}
 }
 
 // DNSType enumerates the values for dns type.
 type DNSType string
 
 const (
-	// AzureDNS ...
-	AzureDNS DNSType = "AzureDns"
-	// DefaultDomainRegistrarDNS ...
-	DefaultDomainRegistrarDNS DNSType = "DefaultDomainRegistrarDns"
+	// DNSTypeAzureDNS ...
+	DNSTypeAzureDNS DNSType = "AzureDns"
+	// DNSTypeDefaultDomainRegistrarDNS ...
+	DNSTypeDefaultDomainRegistrarDNS DNSType = "DefaultDomainRegistrarDns"
 )
 
 // PossibleDNSTypeValues returns an array of possible values for the DNSType const type.
 func PossibleDNSTypeValues() []DNSType {
-	return []DNSType{AzureDNS, DefaultDomainRegistrarDNS}
+	return []DNSType{DNSTypeAzureDNS, DNSTypeDefaultDomainRegistrarDNS}
 }
 
 // DNSVerificationTestResult enumerates the values for dns verification test result.
@@ -637,15 +637,15 @@ func PossibleDomainStatusValues() []DomainStatus {
 type DomainType string
 
 const (
-	// Regular ...
-	Regular DomainType = "Regular"
-	// SoftDeleted ...
-	SoftDeleted DomainType = "SoftDeleted"
+	// DomainTypeRegular ...
+	DomainTypeRegular DomainType = "Regular"
+	// DomainTypeSoftDeleted ...
+	DomainTypeSoftDeleted DomainType = "SoftDeleted"
 )
 
 // PossibleDomainTypeValues returns an array of possible values for the DomainType const type.
 func PossibleDomainTypeValues() []DomainType {
-	return []DomainType{Regular, SoftDeleted}
+	return []DomainType{DomainTypeRegular, DomainTypeSoftDeleted}
 }
 
 // ForwardProxyConvention enumerates the values for forward proxy convention.
@@ -669,66 +669,81 @@ func PossibleForwardProxyConventionValues() []ForwardProxyConvention {
 type FrequencyUnit string
 
 const (
-	// Day ...
-	Day FrequencyUnit = "Day"
-	// Hour ...
-	Hour FrequencyUnit = "Hour"
+	// FrequencyUnitDay ...
+	FrequencyUnitDay FrequencyUnit = "Day"
+	// FrequencyUnitHour ...
+	FrequencyUnitHour FrequencyUnit = "Hour"
 )
 
 // PossibleFrequencyUnitValues returns an array of possible values for the FrequencyUnit const type.
 func PossibleFrequencyUnitValues() []FrequencyUnit {
-	return []FrequencyUnit{Day, Hour}
+	return []FrequencyUnit{FrequencyUnitDay, FrequencyUnitHour}
+}
+
+// FrontEndServiceType enumerates the values for front end service type.
+type FrontEndServiceType string
+
+const (
+	// FrontEndServiceTypeLoadBalancer ...
+	FrontEndServiceTypeLoadBalancer FrontEndServiceType = "LoadBalancer"
+	// FrontEndServiceTypeNodePort ...
+	FrontEndServiceTypeNodePort FrontEndServiceType = "NodePort"
+)
+
+// PossibleFrontEndServiceTypeValues returns an array of possible values for the FrontEndServiceType const type.
+func PossibleFrontEndServiceTypeValues() []FrontEndServiceType {
+	return []FrontEndServiceType{FrontEndServiceTypeLoadBalancer, FrontEndServiceTypeNodePort}
 }
 
 // FtpsState enumerates the values for ftps state.
 type FtpsState string
 
 const (
-	// AllAllowed ...
-	AllAllowed FtpsState = "AllAllowed"
-	// Disabled ...
-	Disabled FtpsState = "Disabled"
-	// FtpsOnly ...
-	FtpsOnly FtpsState = "FtpsOnly"
+	// FtpsStateAllAllowed ...
+	FtpsStateAllAllowed FtpsState = "AllAllowed"
+	// FtpsStateDisabled ...
+	FtpsStateDisabled FtpsState = "Disabled"
+	// FtpsStateFtpsOnly ...
+	FtpsStateFtpsOnly FtpsState = "FtpsOnly"
 )
 
 // PossibleFtpsStateValues returns an array of possible values for the FtpsState const type.
 func PossibleFtpsStateValues() []FtpsState {
-	return []FtpsState{AllAllowed, Disabled, FtpsOnly}
+	return []FtpsState{FtpsStateAllAllowed, FtpsStateDisabled, FtpsStateFtpsOnly}
 }
 
 // HostingEnvironmentStatus enumerates the values for hosting environment status.
 type HostingEnvironmentStatus string
 
 const (
-	// Deleting ...
-	Deleting HostingEnvironmentStatus = "Deleting"
-	// Preparing ...
-	Preparing HostingEnvironmentStatus = "Preparing"
-	// Ready ...
-	Ready HostingEnvironmentStatus = "Ready"
-	// Scaling ...
-	Scaling HostingEnvironmentStatus = "Scaling"
+	// HostingEnvironmentStatusDeleting ...
+	HostingEnvironmentStatusDeleting HostingEnvironmentStatus = "Deleting"
+	// HostingEnvironmentStatusPreparing ...
+	HostingEnvironmentStatusPreparing HostingEnvironmentStatus = "Preparing"
+	// HostingEnvironmentStatusReady ...
+	HostingEnvironmentStatusReady HostingEnvironmentStatus = "Ready"
+	// HostingEnvironmentStatusScaling ...
+	HostingEnvironmentStatusScaling HostingEnvironmentStatus = "Scaling"
 )
 
 // PossibleHostingEnvironmentStatusValues returns an array of possible values for the HostingEnvironmentStatus const type.
 func PossibleHostingEnvironmentStatusValues() []HostingEnvironmentStatus {
-	return []HostingEnvironmentStatus{Deleting, Preparing, Ready, Scaling}
+	return []HostingEnvironmentStatus{HostingEnvironmentStatusDeleting, HostingEnvironmentStatusPreparing, HostingEnvironmentStatusReady, HostingEnvironmentStatusScaling}
 }
 
 // HostNameType enumerates the values for host name type.
 type HostNameType string
 
 const (
-	// Managed ...
-	Managed HostNameType = "Managed"
-	// Verified ...
-	Verified HostNameType = "Verified"
+	// HostNameTypeManaged ...
+	HostNameTypeManaged HostNameType = "Managed"
+	// HostNameTypeVerified ...
+	HostNameTypeVerified HostNameType = "Verified"
 )
 
 // PossibleHostNameTypeValues returns an array of possible values for the HostNameType const type.
 func PossibleHostNameTypeValues() []HostNameType {
-	return []HostNameType{Managed, Verified}
+	return []HostNameType{HostNameTypeManaged, HostNameTypeVerified}
 }
 
 // HostType enumerates the values for host type.
@@ -750,15 +765,15 @@ func PossibleHostTypeValues() []HostType {
 type InAvailabilityReasonType string
 
 const (
-	// AlreadyExists ...
-	AlreadyExists InAvailabilityReasonType = "AlreadyExists"
-	// Invalid ...
-	Invalid InAvailabilityReasonType = "Invalid"
+	// InAvailabilityReasonTypeAlreadyExists ...
+	InAvailabilityReasonTypeAlreadyExists InAvailabilityReasonType = "AlreadyExists"
+	// InAvailabilityReasonTypeInvalid ...
+	InAvailabilityReasonTypeInvalid InAvailabilityReasonType = "Invalid"
 )
 
 // PossibleInAvailabilityReasonTypeValues returns an array of possible values for the InAvailabilityReasonType const type.
 func PossibleInAvailabilityReasonTypeValues() []InAvailabilityReasonType {
-	return []InAvailabilityReasonType{AlreadyExists, Invalid}
+	return []InAvailabilityReasonType{InAvailabilityReasonTypeAlreadyExists, InAvailabilityReasonTypeInvalid}
 }
 
 // InsightStatus enumerates the values for insight status.
@@ -786,59 +801,59 @@ func PossibleInsightStatusValues() []InsightStatus {
 type IPFilterTag string
 
 const (
-	// Default ...
-	Default IPFilterTag = "Default"
-	// ServiceTag ...
-	ServiceTag IPFilterTag = "ServiceTag"
-	// XffProxy ...
-	XffProxy IPFilterTag = "XffProxy"
+	// IPFilterTagDefault ...
+	IPFilterTagDefault IPFilterTag = "Default"
+	// IPFilterTagServiceTag ...
+	IPFilterTagServiceTag IPFilterTag = "ServiceTag"
+	// IPFilterTagXffProxy ...
+	IPFilterTagXffProxy IPFilterTag = "XffProxy"
 )
 
 // PossibleIPFilterTagValues returns an array of possible values for the IPFilterTag const type.
 func PossibleIPFilterTagValues() []IPFilterTag {
-	return []IPFilterTag{Default, ServiceTag, XffProxy}
+	return []IPFilterTag{IPFilterTagDefault, IPFilterTagServiceTag, IPFilterTagXffProxy}
 }
 
 // IssueType enumerates the values for issue type.
 type IssueType string
 
 const (
-	// AppCrash ...
-	AppCrash IssueType = "AppCrash"
-	// AppDeployment ...
-	AppDeployment IssueType = "AppDeployment"
-	// AseDeployment ...
-	AseDeployment IssueType = "AseDeployment"
-	// Other ...
-	Other IssueType = "Other"
-	// PlatformIssue ...
-	PlatformIssue IssueType = "PlatformIssue"
-	// RuntimeIssueDetected ...
-	RuntimeIssueDetected IssueType = "RuntimeIssueDetected"
-	// ServiceIncident ...
-	ServiceIncident IssueType = "ServiceIncident"
-	// UserIssue ...
-	UserIssue IssueType = "UserIssue"
+	// IssueTypeAppCrash ...
+	IssueTypeAppCrash IssueType = "AppCrash"
+	// IssueTypeAppDeployment ...
+	IssueTypeAppDeployment IssueType = "AppDeployment"
+	// IssueTypeAseDeployment ...
+	IssueTypeAseDeployment IssueType = "AseDeployment"
+	// IssueTypeOther ...
+	IssueTypeOther IssueType = "Other"
+	// IssueTypePlatformIssue ...
+	IssueTypePlatformIssue IssueType = "PlatformIssue"
+	// IssueTypeRuntimeIssueDetected ...
+	IssueTypeRuntimeIssueDetected IssueType = "RuntimeIssueDetected"
+	// IssueTypeServiceIncident ...
+	IssueTypeServiceIncident IssueType = "ServiceIncident"
+	// IssueTypeUserIssue ...
+	IssueTypeUserIssue IssueType = "UserIssue"
 )
 
 // PossibleIssueTypeValues returns an array of possible values for the IssueType const type.
 func PossibleIssueTypeValues() []IssueType {
-	return []IssueType{AppCrash, AppDeployment, AseDeployment, Other, PlatformIssue, RuntimeIssueDetected, ServiceIncident, UserIssue}
+	return []IssueType{IssueTypeAppCrash, IssueTypeAppDeployment, IssueTypeAseDeployment, IssueTypeOther, IssueTypePlatformIssue, IssueTypeRuntimeIssueDetected, IssueTypeServiceIncident, IssueTypeUserIssue}
 }
 
 // JobType enumerates the values for job type.
 type JobType string
 
 const (
-	// Continuous ...
-	Continuous JobType = "Continuous"
-	// Triggered ...
-	Triggered JobType = "Triggered"
+	// JobTypeContinuous ...
+	JobTypeContinuous JobType = "Continuous"
+	// JobTypeTriggered ...
+	JobTypeTriggered JobType = "Triggered"
 )
 
 // PossibleJobTypeValues returns an array of possible values for the JobType const type.
 func PossibleJobTypeValues() []JobType {
-	return []JobType{Continuous, Triggered}
+	return []JobType{JobTypeContinuous, JobTypeTriggered}
 }
 
 // KeyVaultSecretStatus enumerates the values for key vault secret status.
@@ -874,6 +889,37 @@ func PossibleKeyVaultSecretStatusValues() []KeyVaultSecretStatus {
 	return []KeyVaultSecretStatus{KeyVaultSecretStatusAzureServiceUnauthorizedToAccessKeyVault, KeyVaultSecretStatusCertificateOrderFailed, KeyVaultSecretStatusExternalPrivateKey, KeyVaultSecretStatusInitialized, KeyVaultSecretStatusKeyVaultDoesNotExist, KeyVaultSecretStatusKeyVaultSecretDoesNotExist, KeyVaultSecretStatusOperationNotPermittedOnKeyVault, KeyVaultSecretStatusSucceeded, KeyVaultSecretStatusUnknown, KeyVaultSecretStatusUnknownError, KeyVaultSecretStatusWaitingOnCertificateOrder}
 }
 
+// KubeEnvironmentProvisioningState enumerates the values for kube environment provisioning state.
+type KubeEnvironmentProvisioningState string
+
+const (
+	// KubeEnvironmentProvisioningStateCanceled ...
+	KubeEnvironmentProvisioningStateCanceled KubeEnvironmentProvisioningState = "Canceled"
+	// KubeEnvironmentProvisioningStateFailed ...
+	KubeEnvironmentProvisioningStateFailed KubeEnvironmentProvisioningState = "Failed"
+	// KubeEnvironmentProvisioningStateInfrastructureSetupComplete ...
+	KubeEnvironmentProvisioningStateInfrastructureSetupComplete KubeEnvironmentProvisioningState = "InfrastructureSetupComplete"
+	// KubeEnvironmentProvisioningStateInfrastructureSetupInProgress ...
+	KubeEnvironmentProvisioningStateInfrastructureSetupInProgress KubeEnvironmentProvisioningState = "InfrastructureSetupInProgress"
+	// KubeEnvironmentProvisioningStateInitializationInProgress ...
+	KubeEnvironmentProvisioningStateInitializationInProgress KubeEnvironmentProvisioningState = "InitializationInProgress"
+	// KubeEnvironmentProvisioningStateScheduledForDelete ...
+	KubeEnvironmentProvisioningStateScheduledForDelete KubeEnvironmentProvisioningState = "ScheduledForDelete"
+	// KubeEnvironmentProvisioningStateSucceeded ...
+	KubeEnvironmentProvisioningStateSucceeded KubeEnvironmentProvisioningState = "Succeeded"
+	// KubeEnvironmentProvisioningStateUpgradeFailed ...
+	KubeEnvironmentProvisioningStateUpgradeFailed KubeEnvironmentProvisioningState = "UpgradeFailed"
+	// KubeEnvironmentProvisioningStateUpgradeRequested ...
+	KubeEnvironmentProvisioningStateUpgradeRequested KubeEnvironmentProvisioningState = "UpgradeRequested"
+	// KubeEnvironmentProvisioningStateWaiting ...
+	KubeEnvironmentProvisioningStateWaiting KubeEnvironmentProvisioningState = "Waiting"
+)
+
+// PossibleKubeEnvironmentProvisioningStateValues returns an array of possible values for the KubeEnvironmentProvisioningState const type.
+func PossibleKubeEnvironmentProvisioningStateValues() []KubeEnvironmentProvisioningState {
+	return []KubeEnvironmentProvisioningState{KubeEnvironmentProvisioningStateCanceled, KubeEnvironmentProvisioningStateFailed, KubeEnvironmentProvisioningStateInfrastructureSetupComplete, KubeEnvironmentProvisioningStateInfrastructureSetupInProgress, KubeEnvironmentProvisioningStateInitializationInProgress, KubeEnvironmentProvisioningStateScheduledForDelete, KubeEnvironmentProvisioningStateSucceeded, KubeEnvironmentProvisioningStateUpgradeFailed, KubeEnvironmentProvisioningStateUpgradeRequested, KubeEnvironmentProvisioningStateWaiting}
+}
+
 // LoadBalancingMode enumerates the values for load balancing mode.
 type LoadBalancingMode string
 
@@ -897,36 +943,36 @@ func PossibleLoadBalancingModeValues() []LoadBalancingMode {
 type LogLevel string
 
 const (
-	// Error ...
-	Error LogLevel = "Error"
-	// Information ...
-	Information LogLevel = "Information"
-	// Off ...
-	Off LogLevel = "Off"
-	// Verbose ...
-	Verbose LogLevel = "Verbose"
-	// Warning ...
-	Warning LogLevel = "Warning"
+	// LogLevelError ...
+	LogLevelError LogLevel = "Error"
+	// LogLevelInformation ...
+	LogLevelInformation LogLevel = "Information"
+	// LogLevelOff ...
+	LogLevelOff LogLevel = "Off"
+	// LogLevelVerbose ...
+	LogLevelVerbose LogLevel = "Verbose"
+	// LogLevelWarning ...
+	LogLevelWarning LogLevel = "Warning"
 )
 
 // PossibleLogLevelValues returns an array of possible values for the LogLevel const type.
 func PossibleLogLevelValues() []LogLevel {
-	return []LogLevel{Error, Information, Off, Verbose, Warning}
+	return []LogLevel{LogLevelError, LogLevelInformation, LogLevelOff, LogLevelVerbose, LogLevelWarning}
 }
 
 // ManagedPipelineMode enumerates the values for managed pipeline mode.
 type ManagedPipelineMode string
 
 const (
-	// Classic ...
-	Classic ManagedPipelineMode = "Classic"
-	// Integrated ...
-	Integrated ManagedPipelineMode = "Integrated"
+	// ManagedPipelineModeClassic ...
+	ManagedPipelineModeClassic ManagedPipelineMode = "Classic"
+	// ManagedPipelineModeIntegrated ...
+	ManagedPipelineModeIntegrated ManagedPipelineMode = "Integrated"
 )
 
 // PossibleManagedPipelineModeValues returns an array of possible values for the ManagedPipelineMode const type.
 func PossibleManagedPipelineModeValues() []ManagedPipelineMode {
-	return []ManagedPipelineMode{Classic, Integrated}
+	return []ManagedPipelineMode{ManagedPipelineModeClassic, ManagedPipelineModeIntegrated}
 }
 
 // ManagedServiceIdentityType enumerates the values for managed service identity type.
@@ -990,15 +1036,15 @@ func PossibleMSDeployProvisioningStateValues() []MSDeployProvisioningState {
 type MySQLMigrationType string
 
 const (
-	// LocalToRemote ...
-	LocalToRemote MySQLMigrationType = "LocalToRemote"
-	// RemoteToLocal ...
-	RemoteToLocal MySQLMigrationType = "RemoteToLocal"
+	// MySQLMigrationTypeLocalToRemote ...
+	MySQLMigrationTypeLocalToRemote MySQLMigrationType = "LocalToRemote"
+	// MySQLMigrationTypeRemoteToLocal ...
+	MySQLMigrationTypeRemoteToLocal MySQLMigrationType = "RemoteToLocal"
 )
 
 // PossibleMySQLMigrationTypeValues returns an array of possible values for the MySQLMigrationType const type.
 func PossibleMySQLMigrationTypeValues() []MySQLMigrationType {
-	return []MySQLMigrationType{LocalToRemote, RemoteToLocal}
+	return []MySQLMigrationType{MySQLMigrationTypeLocalToRemote, MySQLMigrationTypeRemoteToLocal}
 }
 
 // NotificationLevel enumerates the values for notification level.
@@ -1083,17 +1129,17 @@ func PossiblePublicCertificateLocationValues() []PublicCertificateLocation {
 type PublishingProfileFormat string
 
 const (
-	// FileZilla3 ...
-	FileZilla3 PublishingProfileFormat = "FileZilla3"
-	// Ftp ...
-	Ftp PublishingProfileFormat = "Ftp"
-	// WebDeploy ...
-	WebDeploy PublishingProfileFormat = "WebDeploy"
+	// PublishingProfileFormatFileZilla3 ...
+	PublishingProfileFormatFileZilla3 PublishingProfileFormat = "FileZilla3"
+	// PublishingProfileFormatFtp ...
+	PublishingProfileFormatFtp PublishingProfileFormat = "Ftp"
+	// PublishingProfileFormatWebDeploy ...
+	PublishingProfileFormatWebDeploy PublishingProfileFormat = "WebDeploy"
 )
 
 // PossiblePublishingProfileFormatValues returns an array of possible values for the PublishingProfileFormat const type.
 func PossiblePublishingProfileFormatValues() []PublishingProfileFormat {
-	return []PublishingProfileFormat{FileZilla3, Ftp, WebDeploy}
+	return []PublishingProfileFormat{PublishingProfileFormatFileZilla3, PublishingProfileFormatFtp, PublishingProfileFormatWebDeploy}
 }
 
 // RedundancyMode enumerates the values for redundancy mode.
@@ -1182,67 +1228,67 @@ func PossibleRenderingTypeValues() []RenderingType {
 type ResolveStatus string
 
 const (
-	// AccessToKeyVaultDenied ...
-	AccessToKeyVaultDenied ResolveStatus = "AccessToKeyVaultDenied"
-	// FetchTimedOut ...
-	FetchTimedOut ResolveStatus = "FetchTimedOut"
-	// Initialized ...
-	Initialized ResolveStatus = "Initialized"
-	// InvalidSyntax ...
-	InvalidSyntax ResolveStatus = "InvalidSyntax"
-	// MSINotEnabled ...
-	MSINotEnabled ResolveStatus = "MSINotEnabled"
-	// OtherReasons ...
-	OtherReasons ResolveStatus = "OtherReasons"
-	// Resolved ...
-	Resolved ResolveStatus = "Resolved"
-	// SecretNotFound ...
-	SecretNotFound ResolveStatus = "SecretNotFound"
-	// SecretVersionNotFound ...
-	SecretVersionNotFound ResolveStatus = "SecretVersionNotFound"
-	// UnauthorizedClient ...
-	UnauthorizedClient ResolveStatus = "UnauthorizedClient"
-	// VaultNotFound ...
-	VaultNotFound ResolveStatus = "VaultNotFound"
+	// ResolveStatusAccessToKeyVaultDenied ...
+	ResolveStatusAccessToKeyVaultDenied ResolveStatus = "AccessToKeyVaultDenied"
+	// ResolveStatusFetchTimedOut ...
+	ResolveStatusFetchTimedOut ResolveStatus = "FetchTimedOut"
+	// ResolveStatusInitialized ...
+	ResolveStatusInitialized ResolveStatus = "Initialized"
+	// ResolveStatusInvalidSyntax ...
+	ResolveStatusInvalidSyntax ResolveStatus = "InvalidSyntax"
+	// ResolveStatusMSINotEnabled ...
+	ResolveStatusMSINotEnabled ResolveStatus = "MSINotEnabled"
+	// ResolveStatusOtherReasons ...
+	ResolveStatusOtherReasons ResolveStatus = "OtherReasons"
+	// ResolveStatusResolved ...
+	ResolveStatusResolved ResolveStatus = "Resolved"
+	// ResolveStatusSecretNotFound ...
+	ResolveStatusSecretNotFound ResolveStatus = "SecretNotFound"
+	// ResolveStatusSecretVersionNotFound ...
+	ResolveStatusSecretVersionNotFound ResolveStatus = "SecretVersionNotFound"
+	// ResolveStatusUnauthorizedClient ...
+	ResolveStatusUnauthorizedClient ResolveStatus = "UnauthorizedClient"
+	// ResolveStatusVaultNotFound ...
+	ResolveStatusVaultNotFound ResolveStatus = "VaultNotFound"
 )
 
 // PossibleResolveStatusValues returns an array of possible values for the ResolveStatus const type.
 func PossibleResolveStatusValues() []ResolveStatus {
-	return []ResolveStatus{AccessToKeyVaultDenied, FetchTimedOut, Initialized, InvalidSyntax, MSINotEnabled, OtherReasons, Resolved, SecretNotFound, SecretVersionNotFound, UnauthorizedClient, VaultNotFound}
+	return []ResolveStatus{ResolveStatusAccessToKeyVaultDenied, ResolveStatusFetchTimedOut, ResolveStatusInitialized, ResolveStatusInvalidSyntax, ResolveStatusMSINotEnabled, ResolveStatusOtherReasons, ResolveStatusResolved, ResolveStatusSecretNotFound, ResolveStatusSecretVersionNotFound, ResolveStatusUnauthorizedClient, ResolveStatusVaultNotFound}
 }
 
 // ResourceScopeType enumerates the values for resource scope type.
 type ResourceScopeType string
 
 const (
-	// ServerFarm ...
-	ServerFarm ResourceScopeType = "ServerFarm"
-	// Subscription ...
-	Subscription ResourceScopeType = "Subscription"
-	// WebSite ...
-	WebSite ResourceScopeType = "WebSite"
+	// ResourceScopeTypeServerFarm ...
+	ResourceScopeTypeServerFarm ResourceScopeType = "ServerFarm"
+	// ResourceScopeTypeSubscription ...
+	ResourceScopeTypeSubscription ResourceScopeType = "Subscription"
+	// ResourceScopeTypeWebSite ...
+	ResourceScopeTypeWebSite ResourceScopeType = "WebSite"
 )
 
 // PossibleResourceScopeTypeValues returns an array of possible values for the ResourceScopeType const type.
 func PossibleResourceScopeTypeValues() []ResourceScopeType {
-	return []ResourceScopeType{ServerFarm, Subscription, WebSite}
+	return []ResourceScopeType{ResourceScopeTypeServerFarm, ResourceScopeTypeSubscription, ResourceScopeTypeWebSite}
 }
 
 // RouteType enumerates the values for route type.
 type RouteType string
 
 const (
-	// DEFAULT ...
-	DEFAULT RouteType = "DEFAULT"
-	// INHERITED ...
-	INHERITED RouteType = "INHERITED"
-	// STATIC ...
-	STATIC RouteType = "STATIC"
+	// RouteTypeDEFAULT ...
+	RouteTypeDEFAULT RouteType = "DEFAULT"
+	// RouteTypeINHERITED ...
+	RouteTypeINHERITED RouteType = "INHERITED"
+	// RouteTypeSTATIC ...
+	RouteTypeSTATIC RouteType = "STATIC"
 )
 
 // PossibleRouteTypeValues returns an array of possible values for the RouteType const type.
 func PossibleRouteTypeValues() []RouteType {
-	return []RouteType{DEFAULT, INHERITED, STATIC}
+	return []RouteType{RouteTypeDEFAULT, RouteTypeINHERITED, RouteTypeSTATIC}
 }
 
 // ScmType enumerates the values for scm type.
@@ -1288,72 +1334,72 @@ func PossibleScmTypeValues() []ScmType {
 type SiteAvailabilityState string
 
 const (
-	// DisasterRecoveryMode ...
-	DisasterRecoveryMode SiteAvailabilityState = "DisasterRecoveryMode"
-	// Limited ...
-	Limited SiteAvailabilityState = "Limited"
-	// Normal ...
-	Normal SiteAvailabilityState = "Normal"
+	// SiteAvailabilityStateDisasterRecoveryMode ...
+	SiteAvailabilityStateDisasterRecoveryMode SiteAvailabilityState = "DisasterRecoveryMode"
+	// SiteAvailabilityStateLimited ...
+	SiteAvailabilityStateLimited SiteAvailabilityState = "Limited"
+	// SiteAvailabilityStateNormal ...
+	SiteAvailabilityStateNormal SiteAvailabilityState = "Normal"
 )
 
 // PossibleSiteAvailabilityStateValues returns an array of possible values for the SiteAvailabilityState const type.
 func PossibleSiteAvailabilityStateValues() []SiteAvailabilityState {
-	return []SiteAvailabilityState{DisasterRecoveryMode, Limited, Normal}
+	return []SiteAvailabilityState{SiteAvailabilityStateDisasterRecoveryMode, SiteAvailabilityStateLimited, SiteAvailabilityStateNormal}
 }
 
 // SiteExtensionType enumerates the values for site extension type.
 type SiteExtensionType string
 
 const (
-	// Gallery ...
-	Gallery SiteExtensionType = "Gallery"
-	// WebRoot ...
-	WebRoot SiteExtensionType = "WebRoot"
+	// SiteExtensionTypeGallery ...
+	SiteExtensionTypeGallery SiteExtensionType = "Gallery"
+	// SiteExtensionTypeWebRoot ...
+	SiteExtensionTypeWebRoot SiteExtensionType = "WebRoot"
 )
 
 // PossibleSiteExtensionTypeValues returns an array of possible values for the SiteExtensionType const type.
 func PossibleSiteExtensionTypeValues() []SiteExtensionType {
-	return []SiteExtensionType{Gallery, WebRoot}
+	return []SiteExtensionType{SiteExtensionTypeGallery, SiteExtensionTypeWebRoot}
 }
 
 // SiteLoadBalancing enumerates the values for site load balancing.
 type SiteLoadBalancing string
 
 const (
-	// LeastRequests ...
-	LeastRequests SiteLoadBalancing = "LeastRequests"
-	// LeastResponseTime ...
-	LeastResponseTime SiteLoadBalancing = "LeastResponseTime"
-	// PerSiteRoundRobin ...
-	PerSiteRoundRobin SiteLoadBalancing = "PerSiteRoundRobin"
-	// RequestHash ...
-	RequestHash SiteLoadBalancing = "RequestHash"
-	// WeightedRoundRobin ...
-	WeightedRoundRobin SiteLoadBalancing = "WeightedRoundRobin"
-	// WeightedTotalTraffic ...
-	WeightedTotalTraffic SiteLoadBalancing = "WeightedTotalTraffic"
+	// SiteLoadBalancingLeastRequests ...
+	SiteLoadBalancingLeastRequests SiteLoadBalancing = "LeastRequests"
+	// SiteLoadBalancingLeastResponseTime ...
+	SiteLoadBalancingLeastResponseTime SiteLoadBalancing = "LeastResponseTime"
+	// SiteLoadBalancingPerSiteRoundRobin ...
+	SiteLoadBalancingPerSiteRoundRobin SiteLoadBalancing = "PerSiteRoundRobin"
+	// SiteLoadBalancingRequestHash ...
+	SiteLoadBalancingRequestHash SiteLoadBalancing = "RequestHash"
+	// SiteLoadBalancingWeightedRoundRobin ...
+	SiteLoadBalancingWeightedRoundRobin SiteLoadBalancing = "WeightedRoundRobin"
+	// SiteLoadBalancingWeightedTotalTraffic ...
+	SiteLoadBalancingWeightedTotalTraffic SiteLoadBalancing = "WeightedTotalTraffic"
 )
 
 // PossibleSiteLoadBalancingValues returns an array of possible values for the SiteLoadBalancing const type.
 func PossibleSiteLoadBalancingValues() []SiteLoadBalancing {
-	return []SiteLoadBalancing{LeastRequests, LeastResponseTime, PerSiteRoundRobin, RequestHash, WeightedRoundRobin, WeightedTotalTraffic}
+	return []SiteLoadBalancing{SiteLoadBalancingLeastRequests, SiteLoadBalancingLeastResponseTime, SiteLoadBalancingPerSiteRoundRobin, SiteLoadBalancingRequestHash, SiteLoadBalancingWeightedRoundRobin, SiteLoadBalancingWeightedTotalTraffic}
 }
 
 // SiteRuntimeState enumerates the values for site runtime state.
 type SiteRuntimeState string
 
 const (
-	// READY ...
-	READY SiteRuntimeState = "READY"
-	// STOPPED ...
-	STOPPED SiteRuntimeState = "STOPPED"
-	// UNKNOWN ...
-	UNKNOWN SiteRuntimeState = "UNKNOWN"
+	// SiteRuntimeStateREADY ...
+	SiteRuntimeStateREADY SiteRuntimeState = "READY"
+	// SiteRuntimeStateSTOPPED ...
+	SiteRuntimeStateSTOPPED SiteRuntimeState = "STOPPED"
+	// SiteRuntimeStateUNKNOWN ...
+	SiteRuntimeStateUNKNOWN SiteRuntimeState = "UNKNOWN"
 )
 
 // PossibleSiteRuntimeStateValues returns an array of possible values for the SiteRuntimeState const type.
 func PossibleSiteRuntimeStateValues() []SiteRuntimeState {
-	return []SiteRuntimeState{READY, STOPPED, UNKNOWN}
+	return []SiteRuntimeState{SiteRuntimeStateREADY, SiteRuntimeStateSTOPPED, SiteRuntimeStateUNKNOWN}
 }
 
 // SkuName enumerates the values for sku name.
@@ -1397,17 +1443,17 @@ func PossibleSkuNameValues() []SkuName {
 type SolutionType string
 
 const (
-	// BestPractices ...
-	BestPractices SolutionType = "BestPractices"
-	// DeepInvestigation ...
-	DeepInvestigation SolutionType = "DeepInvestigation"
-	// QuickSolution ...
-	QuickSolution SolutionType = "QuickSolution"
+	// SolutionTypeBestPractices ...
+	SolutionTypeBestPractices SolutionType = "BestPractices"
+	// SolutionTypeDeepInvestigation ...
+	SolutionTypeDeepInvestigation SolutionType = "DeepInvestigation"
+	// SolutionTypeQuickSolution ...
+	SolutionTypeQuickSolution SolutionType = "QuickSolution"
 )
 
 // PossibleSolutionTypeValues returns an array of possible values for the SolutionType const type.
 func PossibleSolutionTypeValues() []SolutionType {
-	return []SolutionType{BestPractices, DeepInvestigation, QuickSolution}
+	return []SolutionType{SolutionTypeBestPractices, SolutionTypeDeepInvestigation, SolutionTypeQuickSolution}
 }
 
 // SslState enumerates the values for ssl state.
@@ -1431,15 +1477,15 @@ func PossibleSslStateValues() []SslState {
 type StackPreferredOs string
 
 const (
-	// Linux ...
-	Linux StackPreferredOs = "Linux"
-	// Windows ...
-	Windows StackPreferredOs = "Windows"
+	// StackPreferredOsLinux ...
+	StackPreferredOsLinux StackPreferredOs = "Linux"
+	// StackPreferredOsWindows ...
+	StackPreferredOsWindows StackPreferredOs = "Windows"
 )
 
 // PossibleStackPreferredOsValues returns an array of possible values for the StackPreferredOs const type.
 func PossibleStackPreferredOsValues() []StackPreferredOs {
-	return []StackPreferredOs{Linux, Windows}
+	return []StackPreferredOs{StackPreferredOsLinux, StackPreferredOsWindows}
 }
 
 // StagingEnvironmentPolicy enumerates the values for staging environment policy.
@@ -1474,21 +1520,36 @@ func PossibleStatusOptionsValues() []StatusOptions {
 	return []StatusOptions{StatusOptionsCreating, StatusOptionsPending, StatusOptionsReady}
 }
 
+// StorageType enumerates the values for storage type.
+type StorageType string
+
+const (
+	// StorageTypeLocalNode ...
+	StorageTypeLocalNode StorageType = "LocalNode"
+	// StorageTypeNetworkFileSystem ...
+	StorageTypeNetworkFileSystem StorageType = "NetworkFileSystem"
+)
+
+// PossibleStorageTypeValues returns an array of possible values for the StorageType const type.
+func PossibleStorageTypeValues() []StorageType {
+	return []StorageType{StorageTypeLocalNode, StorageTypeNetworkFileSystem}
+}
+
 // SupportedTLSVersions enumerates the values for supported tls versions.
 type SupportedTLSVersions string
 
 const (
-	// OneFullStopOne ...
-	OneFullStopOne SupportedTLSVersions = "1.1"
-	// OneFullStopTwo ...
-	OneFullStopTwo SupportedTLSVersions = "1.2"
-	// OneFullStopZero ...
-	OneFullStopZero SupportedTLSVersions = "1.0"
+	// SupportedTLSVersionsOneFullStopOne ...
+	SupportedTLSVersionsOneFullStopOne SupportedTLSVersions = "1.1"
+	// SupportedTLSVersionsOneFullStopTwo ...
+	SupportedTLSVersionsOneFullStopTwo SupportedTLSVersions = "1.2"
+	// SupportedTLSVersionsOneFullStopZero ...
+	SupportedTLSVersionsOneFullStopZero SupportedTLSVersions = "1.0"
 )
 
 // PossibleSupportedTLSVersionsValues returns an array of possible values for the SupportedTLSVersions const type.
 func PossibleSupportedTLSVersionsValues() []SupportedTLSVersions {
-	return []SupportedTLSVersions{OneFullStopOne, OneFullStopTwo, OneFullStopZero}
+	return []SupportedTLSVersions{SupportedTLSVersionsOneFullStopOne, SupportedTLSVersionsOneFullStopTwo, SupportedTLSVersionsOneFullStopZero}
 }
 
 // TriggeredWebJobStatus enumerates the values for triggered web job status.
@@ -1527,15 +1588,15 @@ func PossibleTriggerTypesValues() []TriggerTypes {
 type UnauthenticatedClientAction string
 
 const (
-	// AllowAnonymous ...
-	AllowAnonymous UnauthenticatedClientAction = "AllowAnonymous"
-	// RedirectToLoginPage ...
-	RedirectToLoginPage UnauthenticatedClientAction = "RedirectToLoginPage"
+	// UnauthenticatedClientActionAllowAnonymous ...
+	UnauthenticatedClientActionAllowAnonymous UnauthenticatedClientAction = "AllowAnonymous"
+	// UnauthenticatedClientActionRedirectToLoginPage ...
+	UnauthenticatedClientActionRedirectToLoginPage UnauthenticatedClientAction = "RedirectToLoginPage"
 )
 
 // PossibleUnauthenticatedClientActionValues returns an array of possible values for the UnauthenticatedClientAction const type.
 func PossibleUnauthenticatedClientActionValues() []UnauthenticatedClientAction {
-	return []UnauthenticatedClientAction{AllowAnonymous, RedirectToLoginPage}
+	return []UnauthenticatedClientAction{UnauthenticatedClientActionAllowAnonymous, UnauthenticatedClientActionRedirectToLoginPage}
 }
 
 // UnauthenticatedClientActionV2 enumerates the values for unauthenticated client action v2.

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-12-01/web"
+	"github.com/Azure/azure-sdk-for-go/services/web/mgmt/2021-01-15/web"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/location"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/internal/sdk"
@@ -108,8 +108,8 @@ func (r LinuxWebAppResource) Arguments() map[string]*pluginsdk.Schema {
 			Optional: true,
 			Default:  "Required",
 			ValidateFunc: validation.StringInSlice([]string{
-				string(web.Optional),
-				string(web.Required),
+				string(web.ClientCertModeOptional),
+				string(web.ClientCertModeRequired),
 			}, false),
 		},
 

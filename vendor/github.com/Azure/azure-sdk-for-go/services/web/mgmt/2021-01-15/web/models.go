@@ -20,7 +20,7 @@ import (
 )
 
 // The package's fully qualified name.
-const fqdn = "github.com/Azure/azure-sdk-for-go/services/web/mgmt/2020-12-01/web"
+const fqdn = "github.com/Azure/azure-sdk-for-go/services/web/mgmt/2021-01-15/web"
 
 // AbnormalTimePeriod class representing Abnormal Time Period identified in diagnosis
 type AbnormalTimePeriod struct {
@@ -617,14 +617,14 @@ func NewAPIKVReferenceCollectionPage(cur APIKVReferenceCollection, getNextPage f
 // APIKVReferenceProperties apiKVReference resource specific properties
 type APIKVReferenceProperties struct {
 	Reference *string `json:"reference,omitempty"`
-	// Status - Possible values include: 'Initialized', 'Resolved', 'InvalidSyntax', 'MSINotEnabled', 'VaultNotFound', 'SecretNotFound', 'SecretVersionNotFound', 'AccessToKeyVaultDenied', 'OtherReasons', 'FetchTimedOut', 'UnauthorizedClient'
+	// Status - Possible values include: 'ResolveStatusInitialized', 'ResolveStatusResolved', 'ResolveStatusInvalidSyntax', 'ResolveStatusMSINotEnabled', 'ResolveStatusVaultNotFound', 'ResolveStatusSecretNotFound', 'ResolveStatusSecretVersionNotFound', 'ResolveStatusAccessToKeyVaultDenied', 'ResolveStatusOtherReasons', 'ResolveStatusFetchTimedOut', 'ResolveStatusUnauthorizedClient'
 	Status        ResolveStatus           `json:"status,omitempty"`
 	VaultName     *string                 `json:"vaultName,omitempty"`
 	SecretName    *string                 `json:"secretName,omitempty"`
 	SecretVersion *string                 `json:"secretVersion,omitempty"`
 	IdentityType  *ManagedServiceIdentity `json:"identityType,omitempty"`
 	Details       *string                 `json:"details,omitempty"`
-	// Source - Possible values include: 'KeyVault'
+	// Source - Possible values include: 'ConfigReferenceSourceKeyVault'
 	Source        ConfigReferenceSource `json:"source,omitempty"`
 	ActiveVersion *string               `json:"activeVersion,omitempty"`
 }
@@ -1454,6 +1454,12 @@ func (asr *ApplicationStackResource) UnmarshalJSON(body []byte) error {
 	}
 
 	return nil
+}
+
+// AppLogsConfiguration ...
+type AppLogsConfiguration struct {
+	Destination               *string                    `json:"destination,omitempty"`
+	LogAnalyticsConfiguration *LogAnalyticsConfiguration `json:"logAnalyticsConfiguration,omitempty"`
 }
 
 // AppMajorVersion web App stack major version.
@@ -2808,13 +2814,13 @@ type AppServiceCertificateOrderPatchResourceProperties struct {
 	ValidityInYears *int32 `json:"validityInYears,omitempty"`
 	// KeySize - Certificate key size.
 	KeySize *int32 `json:"keySize,omitempty"`
-	// ProductType - Certificate product type. Possible values include: 'StandardDomainValidatedSsl', 'StandardDomainValidatedWildCardSsl'
+	// ProductType - Certificate product type. Possible values include: 'CertificateProductTypeStandardDomainValidatedSsl', 'CertificateProductTypeStandardDomainValidatedWildCardSsl'
 	ProductType CertificateProductType `json:"productType,omitempty"`
 	// AutoRenew - <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
 	AutoRenew *bool `json:"autoRenew,omitempty"`
 	// ProvisioningState - READ-ONLY; Status of certificate order. Possible values include: 'ProvisioningStateSucceeded', 'ProvisioningStateFailed', 'ProvisioningStateCanceled', 'ProvisioningStateInProgress', 'ProvisioningStateDeleting'
 	ProvisioningState ProvisioningState `json:"provisioningState,omitempty"`
-	// Status - READ-ONLY; Current order status. Possible values include: 'Pendingissuance', 'Issued', 'Revoked', 'Canceled', 'Denied', 'Pendingrevocation', 'PendingRekey', 'Unused', 'Expired', 'NotSubmitted'
+	// Status - READ-ONLY; Current order status. Possible values include: 'CertificateOrderStatusPendingissuance', 'CertificateOrderStatusIssued', 'CertificateOrderStatusRevoked', 'CertificateOrderStatusCanceled', 'CertificateOrderStatusDenied', 'CertificateOrderStatusPendingrevocation', 'CertificateOrderStatusPendingRekey', 'CertificateOrderStatusUnused', 'CertificateOrderStatusExpired', 'CertificateOrderStatusNotSubmitted'
 	Status CertificateOrderStatus `json:"status,omitempty"`
 	// SignedCertificate - READ-ONLY; Signed certificate.
 	SignedCertificate *CertificateDetails `json:"signedCertificate,omitempty"`
@@ -2879,13 +2885,13 @@ type AppServiceCertificateOrderProperties struct {
 	ValidityInYears *int32 `json:"validityInYears,omitempty"`
 	// KeySize - Certificate key size.
 	KeySize *int32 `json:"keySize,omitempty"`
-	// ProductType - Certificate product type. Possible values include: 'StandardDomainValidatedSsl', 'StandardDomainValidatedWildCardSsl'
+	// ProductType - Certificate product type. Possible values include: 'CertificateProductTypeStandardDomainValidatedSsl', 'CertificateProductTypeStandardDomainValidatedWildCardSsl'
 	ProductType CertificateProductType `json:"productType,omitempty"`
 	// AutoRenew - <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>.
 	AutoRenew *bool `json:"autoRenew,omitempty"`
 	// ProvisioningState - READ-ONLY; Status of certificate order. Possible values include: 'ProvisioningStateSucceeded', 'ProvisioningStateFailed', 'ProvisioningStateCanceled', 'ProvisioningStateInProgress', 'ProvisioningStateDeleting'
 	ProvisioningState ProvisioningState `json:"provisioningState,omitempty"`
-	// Status - READ-ONLY; Current order status. Possible values include: 'Pendingissuance', 'Issued', 'Revoked', 'Canceled', 'Denied', 'Pendingrevocation', 'PendingRekey', 'Unused', 'Expired', 'NotSubmitted'
+	// Status - READ-ONLY; Current order status. Possible values include: 'CertificateOrderStatusPendingissuance', 'CertificateOrderStatusIssued', 'CertificateOrderStatusRevoked', 'CertificateOrderStatusCanceled', 'CertificateOrderStatusDenied', 'CertificateOrderStatusPendingrevocation', 'CertificateOrderStatusPendingRekey', 'CertificateOrderStatusUnused', 'CertificateOrderStatusExpired', 'CertificateOrderStatusNotSubmitted'
 	Status CertificateOrderStatus `json:"status,omitempty"`
 	// SignedCertificate - READ-ONLY; Signed certificate.
 	SignedCertificate *CertificateDetails `json:"signedCertificate,omitempty"`
@@ -3231,7 +3237,7 @@ func (ascr *AppServiceCertificateResource) UnmarshalJSON(body []byte) error {
 type AppServiceEnvironment struct {
 	// ProvisioningState - READ-ONLY; Provisioning state of the App Service Environment. Possible values include: 'ProvisioningStateSucceeded', 'ProvisioningStateFailed', 'ProvisioningStateCanceled', 'ProvisioningStateInProgress', 'ProvisioningStateDeleting'
 	ProvisioningState ProvisioningState `json:"provisioningState,omitempty"`
-	// Status - READ-ONLY; Current status of the App Service Environment. Possible values include: 'Preparing', 'Ready', 'Scaling', 'Deleting'
+	// Status - READ-ONLY; Current status of the App Service Environment. Possible values include: 'HostingEnvironmentStatusPreparing', 'HostingEnvironmentStatusReady', 'HostingEnvironmentStatusScaling', 'HostingEnvironmentStatusDeleting'
 	Status HostingEnvironmentStatus `json:"status,omitempty"`
 	// VirtualNetwork - Description of the Virtual Network.
 	VirtualNetwork *VirtualNetworkProfile `json:"virtualNetwork,omitempty"`
@@ -4200,7 +4206,8 @@ type AppServicePlan struct {
 	autorest.Response `json:"-"`
 	// AppServicePlanProperties - AppServicePlan resource specific properties
 	*AppServicePlanProperties `json:"properties,omitempty"`
-	Sku                       *SkuDescription `json:"sku,omitempty"`
+	Sku                       *SkuDescription   `json:"sku,omitempty"`
+	ExtendedLocation          *ExtendedLocation `json:"extendedLocation,omitempty"`
 	// ID - READ-ONLY; Resource Id.
 	ID *string `json:"id,omitempty"`
 	// Name - READ-ONLY; Resource Name.
@@ -4223,6 +4230,9 @@ func (asp AppServicePlan) MarshalJSON() ([]byte, error) {
 	}
 	if asp.Sku != nil {
 		objectMap["sku"] = asp.Sku
+	}
+	if asp.ExtendedLocation != nil {
+		objectMap["extendedLocation"] = asp.ExtendedLocation
 	}
 	if asp.Kind != nil {
 		objectMap["kind"] = asp.Kind
@@ -4262,6 +4272,15 @@ func (asp *AppServicePlan) UnmarshalJSON(body []byte) error {
 					return err
 				}
 				asp.Sku = &sku
+			}
+		case "extendedLocation":
+			if v != nil {
+				var extendedLocation ExtendedLocation
+				err = json.Unmarshal(*v, &extendedLocation)
+				if err != nil {
+					return err
+				}
+				asp.ExtendedLocation = &extendedLocation
 			}
 		case "id":
 			if v != nil {
@@ -4594,6 +4613,8 @@ type AppServicePlanPatchResourceProperties struct {
 	// PerSiteScaling - If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
 	// If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
 	PerSiteScaling *bool `json:"perSiteScaling,omitempty"`
+	// ElasticScaleEnabled - ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku
+	ElasticScaleEnabled *bool `json:"elasticScaleEnabled,omitempty"`
 	// MaximumElasticWorkerCount - Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
 	MaximumElasticWorkerCount *int32 `json:"maximumElasticWorkerCount,omitempty"`
 	// NumberOfSites - READ-ONLY; Number of apps assigned to this App Service plan.
@@ -4633,6 +4654,9 @@ func (asppr AppServicePlanPatchResourceProperties) MarshalJSON() ([]byte, error)
 	}
 	if asppr.PerSiteScaling != nil {
 		objectMap["perSiteScaling"] = asppr.PerSiteScaling
+	}
+	if asppr.ElasticScaleEnabled != nil {
+		objectMap["elasticScaleEnabled"] = asppr.ElasticScaleEnabled
 	}
 	if asppr.MaximumElasticWorkerCount != nil {
 		objectMap["maximumElasticWorkerCount"] = asppr.MaximumElasticWorkerCount
@@ -4684,6 +4708,8 @@ type AppServicePlanProperties struct {
 	// PerSiteScaling - If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
 	// If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.
 	PerSiteScaling *bool `json:"perSiteScaling,omitempty"`
+	// ElasticScaleEnabled - ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku
+	ElasticScaleEnabled *bool `json:"elasticScaleEnabled,omitempty"`
 	// MaximumElasticWorkerCount - Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
 	MaximumElasticWorkerCount *int32 `json:"maximumElasticWorkerCount,omitempty"`
 	// NumberOfSites - READ-ONLY; Number of apps assigned to this App Service plan.
@@ -4723,6 +4749,9 @@ func (asp AppServicePlanProperties) MarshalJSON() ([]byte, error) {
 	}
 	if asp.PerSiteScaling != nil {
 		objectMap["perSiteScaling"] = asp.PerSiteScaling
+	}
+	if asp.ElasticScaleEnabled != nil {
+		objectMap["elasticScaleEnabled"] = asp.ElasticScaleEnabled
 	}
 	if asp.MaximumElasticWorkerCount != nil {
 		objectMap["maximumElasticWorkerCount"] = asp.MaximumElasticWorkerCount
@@ -5872,7 +5901,7 @@ type AppStackProperties struct {
 	Value *string `json:"value,omitempty"`
 	// MajorVersions - READ-ONLY; List of major versions available.
 	MajorVersions *[]AppMajorVersion `json:"majorVersions,omitempty"`
-	// PreferredOs - READ-ONLY; Web App stack preferred OS. Possible values include: 'Windows', 'Linux'
+	// PreferredOs - READ-ONLY; Web App stack preferred OS. Possible values include: 'StackPreferredOsWindows', 'StackPreferredOsLinux'
 	PreferredOs StackPreferredOs `json:"preferredOs,omitempty"`
 }
 
@@ -5880,6 +5909,18 @@ type AppStackProperties struct {
 func (as AppStackProperties) MarshalJSON() ([]byte, error) {
 	objectMap := make(map[string]interface{})
 	return json.Marshal(objectMap)
+}
+
+// ArcConfiguration ...
+type ArcConfiguration struct {
+	// ArtifactsStorageType - Possible values include: 'StorageTypeLocalNode', 'StorageTypeNetworkFileSystem'
+	ArtifactsStorageType         StorageType            `json:"artifactsStorageType,omitempty"`
+	ArtifactStorageClassName     *string                `json:"artifactStorageClassName,omitempty"`
+	ArtifactStorageMountPath     *string                `json:"artifactStorageMountPath,omitempty"`
+	ArtifactStorageNodeName      *string                `json:"artifactStorageNodeName,omitempty"`
+	ArtifactStorageAccessMode    *string                `json:"artifactStorageAccessMode,omitempty"`
+	FrontEndServiceConfiguration *FrontEndConfiguration `json:"frontEndServiceConfiguration,omitempty"`
+	KubeConfig                   *string                `json:"kubeConfig,omitempty"`
 }
 
 // ArmIDWrapper a wrapper for an ARM resource id
@@ -6114,7 +6155,7 @@ type AuthPlatformProperties struct {
 
 // AutoHealActions actions which to take by the auto-heal module when a rule is triggered.
 type AutoHealActions struct {
-	// ActionType - Predefined action to be taken. Possible values include: 'Recycle', 'LogEvent', 'CustomAction'
+	// ActionType - Predefined action to be taken. Possible values include: 'AutoHealActionTypeRecycle', 'AutoHealActionTypeLogEvent', 'AutoHealActionTypeCustomAction'
 	ActionType AutoHealActionType `json:"actionType,omitempty"`
 	// CustomAction - Custom action to be taken.
 	CustomAction *AutoHealCustomAction `json:"customAction,omitempty"`
@@ -6555,7 +6596,7 @@ type AzureActiveDirectoryValidationProperties struct {
 
 // AzureBlobStorageApplicationLogsConfig application logs azure blob storage configuration.
 type AzureBlobStorageApplicationLogsConfig struct {
-	// Level - Log level. Possible values include: 'Off', 'Verbose', 'Information', 'Warning', 'Error'
+	// Level - Log level. Possible values include: 'LogLevelOff', 'LogLevelVerbose', 'LogLevelInformation', 'LogLevelWarning', 'LogLevelError'
 	Level LogLevel `json:"level,omitempty"`
 	// SasURL - SAS url to a azure blob container with read/write/list/delete permissions.
 	SasURL *string `json:"sasUrl,omitempty"`
@@ -6766,7 +6807,7 @@ type AzureStaticWebAppsRegistrationProperties struct {
 
 // AzureStorageInfoValue azure Files or Blob Storage access information value for dictionary storage.
 type AzureStorageInfoValue struct {
-	// Type - Type of storage. Possible values include: 'AzureFiles', 'AzureBlob'
+	// Type - Type of storage. Possible values include: 'AzureStorageTypeAzureFiles', 'AzureStorageTypeAzureBlob'
 	Type AzureStorageType `json:"type,omitempty"`
 	// AccountName - Name of the storage account.
 	AccountName *string `json:"accountName,omitempty"`
@@ -6776,7 +6817,7 @@ type AzureStorageInfoValue struct {
 	AccessKey *string `json:"accessKey,omitempty"`
 	// MountPath - Path to mount the storage within the site's runtime environment.
 	MountPath *string `json:"mountPath,omitempty"`
-	// State - READ-ONLY; State of the storage account. Possible values include: 'Ok', 'InvalidCredentials', 'InvalidShare', 'NotValidated'
+	// State - READ-ONLY; State of the storage account. Possible values include: 'AzureStorageStateOk', 'AzureStorageStateInvalidCredentials', 'AzureStorageStateInvalidShare', 'AzureStorageStateNotValidated'
 	State AzureStorageState `json:"state,omitempty"`
 }
 
@@ -6830,7 +6871,7 @@ func (aspdr AzureStoragePropertyDictionaryResource) MarshalJSON() ([]byte, error
 
 // AzureTableStorageApplicationLogsConfig application logs to Azure table storage configuration.
 type AzureTableStorageApplicationLogsConfig struct {
-	// Level - Log level. Possible values include: 'Off', 'Verbose', 'Information', 'Warning', 'Error'
+	// Level - Log level. Possible values include: 'LogLevelOff', 'LogLevelVerbose', 'LogLevelInformation', 'LogLevelWarning', 'LogLevelError'
 	Level LogLevel `json:"level,omitempty"`
 	// SasURL - SAS URL to an Azure table with add/query/delete permissions.
 	SasURL *string `json:"sasUrl,omitempty"`
@@ -7101,7 +7142,7 @@ type BackupItemProperties struct {
 	BlobName *string `json:"blobName,omitempty"`
 	// Name - READ-ONLY; Name of this backup.
 	Name *string `json:"name,omitempty"`
-	// Status - READ-ONLY; Backup status. Possible values include: 'InProgress', 'Failed', 'Succeeded', 'TimedOut', 'Created', 'Skipped', 'PartiallySucceeded', 'DeleteInProgress', 'DeleteFailed', 'Deleted'
+	// Status - READ-ONLY; Backup status. Possible values include: 'BackupItemStatusInProgress', 'BackupItemStatusFailed', 'BackupItemStatusSucceeded', 'BackupItemStatusTimedOut', 'BackupItemStatusCreated', 'BackupItemStatusSkipped', 'BackupItemStatusPartiallySucceeded', 'BackupItemStatusDeleteInProgress', 'BackupItemStatusDeleteFailed', 'BackupItemStatusDeleted'
 	Status BackupItemStatus `json:"status,omitempty"`
 	// SizeInBytes - READ-ONLY; Size of the backup in bytes.
 	SizeInBytes *int64 `json:"sizeInBytes,omitempty"`
@@ -7235,7 +7276,7 @@ type BackupRequestProperties struct {
 type BackupSchedule struct {
 	// FrequencyInterval - How often the backup should be executed (e.g. for weekly backup, this should be set to 7 and FrequencyUnit should be set to Day)
 	FrequencyInterval *int32 `json:"frequencyInterval,omitempty"`
-	// FrequencyUnit - The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7). Possible values include: 'Day', 'Hour'
+	// FrequencyUnit - The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7). Possible values include: 'FrequencyUnitDay', 'FrequencyUnitHour'
 	FrequencyUnit FrequencyUnit `json:"frequencyUnit,omitempty"`
 	// KeepAtLeastOneBackup - True if the retention policy should always keep at least one backup in the storage account, regardless how old it is; false otherwise.
 	KeepAtLeastOneBackup *bool `json:"keepAtLeastOneBackup,omitempty"`
@@ -8136,7 +8177,7 @@ func (coa *CertificateOrderAction) UnmarshalJSON(body []byte) error {
 
 // CertificateOrderActionProperties certificateOrderAction resource specific properties
 type CertificateOrderActionProperties struct {
-	// ActionType - READ-ONLY; Action type. Possible values include: 'CertificateIssued', 'CertificateOrderCanceled', 'CertificateOrderCreated', 'CertificateRevoked', 'DomainValidationComplete', 'FraudDetected', 'OrgNameChange', 'OrgValidationComplete', 'SanDrop', 'FraudCleared', 'CertificateExpired', 'CertificateExpirationWarning', 'FraudDocumentationRequired', 'Unknown'
+	// ActionType - READ-ONLY; Action type. Possible values include: 'CertificateOrderActionTypeCertificateIssued', 'CertificateOrderActionTypeCertificateOrderCanceled', 'CertificateOrderActionTypeCertificateOrderCreated', 'CertificateOrderActionTypeCertificateRevoked', 'CertificateOrderActionTypeDomainValidationComplete', 'CertificateOrderActionTypeFraudDetected', 'CertificateOrderActionTypeOrgNameChange', 'CertificateOrderActionTypeOrgValidationComplete', 'CertificateOrderActionTypeSanDrop', 'CertificateOrderActionTypeFraudCleared', 'CertificateOrderActionTypeCertificateExpired', 'CertificateOrderActionTypeCertificateExpirationWarning', 'CertificateOrderActionTypeFraudDocumentationRequired', 'CertificateOrderActionTypeUnknown'
 	ActionType CertificateOrderActionType `json:"actionType,omitempty"`
 	// CreatedAt - READ-ONLY; Time at which the certificate action was performed.
 	CreatedAt *date.Time `json:"createdAt,omitempty"`
@@ -8592,7 +8633,7 @@ type ConnStringInfo struct {
 	Name *string `json:"name,omitempty"`
 	// ConnectionString - Connection string value.
 	ConnectionString *string `json:"connectionString,omitempty"`
-	// Type - Type of database. Possible values include: 'MySQL', 'SQLServer', 'SQLAzure', 'Custom', 'NotificationHub', 'ServiceBus', 'EventHub', 'APIHub', 'DocDb', 'RedisCache', 'PostgreSQL'
+	// Type - Type of database. Possible values include: 'ConnectionStringTypeMySQL', 'ConnectionStringTypeSQLServer', 'ConnectionStringTypeSQLAzure', 'ConnectionStringTypeCustom', 'ConnectionStringTypeNotificationHub', 'ConnectionStringTypeServiceBus', 'ConnectionStringTypeEventHub', 'ConnectionStringTypeAPIHub', 'ConnectionStringTypeDocDb', 'ConnectionStringTypeRedisCache', 'ConnectionStringTypePostgreSQL'
 	Type ConnectionStringType `json:"type,omitempty"`
 }
 
@@ -8600,7 +8641,7 @@ type ConnStringInfo struct {
 type ConnStringValueTypePair struct {
 	// Value - Value of pair.
 	Value *string `json:"value,omitempty"`
-	// Type - Type of database. Possible values include: 'MySQL', 'SQLServer', 'SQLAzure', 'Custom', 'NotificationHub', 'ServiceBus', 'EventHub', 'APIHub', 'DocDb', 'RedisCache', 'PostgreSQL'
+	// Type - Type of database. Possible values include: 'ConnectionStringTypeMySQL', 'ConnectionStringTypeSQLServer', 'ConnectionStringTypeSQLAzure', 'ConnectionStringTypeCustom', 'ConnectionStringTypeNotificationHub', 'ConnectionStringTypeServiceBus', 'ConnectionStringTypeEventHub', 'ConnectionStringTypeAPIHub', 'ConnectionStringTypeDocDb', 'ConnectionStringTypeRedisCache', 'ConnectionStringTypePostgreSQL'
 	Type ConnectionStringType `json:"type,omitempty"`
 }
 
@@ -8939,7 +8980,7 @@ func NewContinuousWebJobCollectionPage(cur ContinuousWebJobCollection, getNextPa
 
 // ContinuousWebJobProperties continuousWebJob resource specific properties
 type ContinuousWebJobProperties struct {
-	// Status - Job status. Possible values include: 'Initializing', 'Starting', 'Running', 'PendingRestart', 'Stopped'
+	// Status - Job status. Possible values include: 'ContinuousWebJobStatusInitializing', 'ContinuousWebJobStatusStarting', 'ContinuousWebJobStatusRunning', 'ContinuousWebJobStatusPendingRestart', 'ContinuousWebJobStatusStopped'
 	Status ContinuousWebJobStatus `json:"status,omitempty"`
 	// DetailedStatus - Detailed status.
 	DetailedStatus *string `json:"detailed_status,omitempty"`
@@ -8951,7 +8992,7 @@ type ContinuousWebJobProperties struct {
 	URL *string `json:"url,omitempty"`
 	// ExtraInfoURL - Extra Info URL.
 	ExtraInfoURL *string `json:"extra_info_url,omitempty"`
-	// WebJobType - Job type. Possible values include: 'Continuous', 'Triggered'
+	// WebJobType - Job type. Possible values include: 'JobTypeContinuous', 'JobTypeTriggered'
 	WebJobType JobType `json:"web_job_type,omitempty"`
 	// Error - Error information.
 	Error *string `json:"error,omitempty"`
@@ -9085,7 +9126,7 @@ func (ce *CookieExpiration) UnmarshalJSON(body []byte) error {
 
 // CookieExpirationProperties cookieExpiration resource specific properties
 type CookieExpirationProperties struct {
-	// Convention - The convention used when determining the session cookie's expiration. Possible values include: 'FixedTime', 'IdentityProviderDerived'
+	// Convention - The convention used when determining the session cookie's expiration. Possible values include: 'CookieExpirationConventionFixedTime', 'CookieExpirationConventionIdentityProviderDerived'
 	Convention CookieExpirationConvention `json:"convention,omitempty"`
 	// TimeToExpiration - The time after the request is made when the session cookie should expire.
 	TimeToExpiration *string `json:"timeToExpiration,omitempty"`
@@ -9279,10 +9320,11 @@ func NewCsmOperationCollectionPage(cur CsmOperationCollection, getNextPage func(
 
 // CsmOperationDescription description of an operation available for Microsoft.Web resource provider.
 type CsmOperationDescription struct {
-	Name       *string                            `json:"name,omitempty"`
-	Display    *CsmOperationDisplay               `json:"display,omitempty"`
-	Origin     *string                            `json:"origin,omitempty"`
-	Properties *CsmOperationDescriptionProperties `json:"properties,omitempty"`
+	Name         *string                            `json:"name,omitempty"`
+	IsDataAction *bool                              `json:"isDataAction,omitempty"`
+	Display      *CsmOperationDisplay               `json:"display,omitempty"`
+	Origin       *string                            `json:"origin,omitempty"`
+	Properties   *CsmOperationDescriptionProperties `json:"properties,omitempty"`
 }
 
 // CsmOperationDescriptionProperties properties available for a Microsoft.Web resource provider operation.
@@ -9296,102 +9338,6 @@ type CsmOperationDisplay struct {
 	Resource    *string `json:"resource,omitempty"`
 	Operation   *string `json:"operation,omitempty"`
 	Description *string `json:"description,omitempty"`
-}
-
-// CsmPublishingCredentialsPoliciesCollection publishing Credentials Policies collection.
-type CsmPublishingCredentialsPoliciesCollection struct {
-	autorest.Response `json:"-"`
-	// CsmPublishingCredentialsPoliciesCollectionProperties - CsmPublishingCredentialsPoliciesCollection resource specific properties
-	*CsmPublishingCredentialsPoliciesCollectionProperties `json:"properties,omitempty"`
-	// ID - READ-ONLY; Resource Id.
-	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; Resource Name.
-	Name *string `json:"name,omitempty"`
-	// Kind - Kind of resource.
-	Kind *string `json:"kind,omitempty"`
-	// Type - READ-ONLY; Resource type.
-	Type *string `json:"type,omitempty"`
-}
-
-// MarshalJSON is the custom marshaler for CsmPublishingCredentialsPoliciesCollection.
-func (cpcpc CsmPublishingCredentialsPoliciesCollection) MarshalJSON() ([]byte, error) {
-	objectMap := make(map[string]interface{})
-	if cpcpc.CsmPublishingCredentialsPoliciesCollectionProperties != nil {
-		objectMap["properties"] = cpcpc.CsmPublishingCredentialsPoliciesCollectionProperties
-	}
-	if cpcpc.Kind != nil {
-		objectMap["kind"] = cpcpc.Kind
-	}
-	return json.Marshal(objectMap)
-}
-
-// UnmarshalJSON is the custom unmarshaler for CsmPublishingCredentialsPoliciesCollection struct.
-func (cpcpc *CsmPublishingCredentialsPoliciesCollection) UnmarshalJSON(body []byte) error {
-	var m map[string]*json.RawMessage
-	err := json.Unmarshal(body, &m)
-	if err != nil {
-		return err
-	}
-	for k, v := range m {
-		switch k {
-		case "properties":
-			if v != nil {
-				var csmPublishingCredentialsPoliciesCollectionProperties CsmPublishingCredentialsPoliciesCollectionProperties
-				err = json.Unmarshal(*v, &csmPublishingCredentialsPoliciesCollectionProperties)
-				if err != nil {
-					return err
-				}
-				cpcpc.CsmPublishingCredentialsPoliciesCollectionProperties = &csmPublishingCredentialsPoliciesCollectionProperties
-			}
-		case "id":
-			if v != nil {
-				var ID string
-				err = json.Unmarshal(*v, &ID)
-				if err != nil {
-					return err
-				}
-				cpcpc.ID = &ID
-			}
-		case "name":
-			if v != nil {
-				var name string
-				err = json.Unmarshal(*v, &name)
-				if err != nil {
-					return err
-				}
-				cpcpc.Name = &name
-			}
-		case "kind":
-			if v != nil {
-				var kind string
-				err = json.Unmarshal(*v, &kind)
-				if err != nil {
-					return err
-				}
-				cpcpc.Kind = &kind
-			}
-		case "type":
-			if v != nil {
-				var typeVar string
-				err = json.Unmarshal(*v, &typeVar)
-				if err != nil {
-					return err
-				}
-				cpcpc.Type = &typeVar
-			}
-		}
-	}
-
-	return nil
-}
-
-// CsmPublishingCredentialsPoliciesCollectionProperties csmPublishingCredentialsPoliciesCollection resource
-// specific properties
-type CsmPublishingCredentialsPoliciesCollectionProperties struct {
-	// Ftp - Whether FTP is allowed.
-	Ftp *CsmPublishingCredentialsPoliciesEntity `json:"ftp,omitempty"`
-	// Scm - Whether Scm Basic Auth is allowed.
-	Scm *CsmPublishingCredentialsPoliciesEntity `json:"scm,omitempty"`
 }
 
 // CsmPublishingCredentialsPoliciesEntity publishing Credentials Policies parameters.
@@ -9493,7 +9439,7 @@ type CsmPublishingProfileOptions struct {
 	// Format - Name of the format. Valid values are:
 	// FileZilla3
 	// WebDeploy -- default
-	// Ftp. Possible values include: 'FileZilla3', 'WebDeploy', 'Ftp'
+	// Ftp. Possible values include: 'PublishingProfileFormatFileZilla3', 'PublishingProfileFormatWebDeploy', 'PublishingProfileFormatFtp'
 	Format PublishingProfileFormat `json:"format,omitempty"`
 	// IncludeDisasterRecoveryEndpoints - Include the DisasterRecover endpoint if true
 	IncludeDisasterRecoveryEndpoints *bool `json:"includeDisasterRecoveryEndpoints,omitempty"`
@@ -10709,7 +10655,7 @@ type DetectorAbnormalTimePeriod struct {
 	Priority *float64 `json:"priority,omitempty"`
 	// MetaData - Downtime metadata
 	MetaData *[][]NameValuePair `json:"metaData,omitempty"`
-	// Type - Represents the type of the Detector. Possible values include: 'ServiceIncident', 'AppDeployment', 'AppCrash', 'RuntimeIssueDetected', 'AseDeployment', 'UserIssue', 'PlatformIssue', 'Other'
+	// Type - Represents the type of the Detector. Possible values include: 'IssueTypeServiceIncident', 'IssueTypeAppDeployment', 'IssueTypeAppCrash', 'IssueTypeRuntimeIssueDetected', 'IssueTypeAseDeployment', 'IssueTypeUserIssue', 'IssueTypePlatformIssue', 'IssueTypeOther'
 	Type IssueType `json:"type,omitempty"`
 	// Solutions - List of proposed solutions
 	Solutions *[]Solution `json:"solutions,omitempty"`
@@ -10836,7 +10782,7 @@ type DetectorInfo struct {
 	SupportTopicList *[]SupportTopic `json:"supportTopicList,omitempty"`
 	// AnalysisType - READ-ONLY; Analysis Types for which this detector should apply to.
 	AnalysisType *[]string `json:"analysisType,omitempty"`
-	// Type - READ-ONLY; Whether this detector is an Analysis Detector or not. Possible values include: 'Detector', 'Analysis', 'CategoryOverview'
+	// Type - READ-ONLY; Whether this detector is an Analysis Detector or not. Possible values include: 'DetectorTypeDetector', 'DetectorTypeAnalysis', 'DetectorTypeCategoryOverview'
 	Type DetectorType `json:"type,omitempty"`
 	// Score - READ-ONLY; Defines score of a detector to power ML based matching.
 	Score *float64 `json:"score,omitempty"`
@@ -12102,7 +12048,7 @@ type DomainAvailabilityCheckResult struct {
 	Name *string `json:"name,omitempty"`
 	// Available - <code>true</code> if domain can be purchased using CreateDomain API; otherwise, <code>false</code>.
 	Available *bool `json:"available,omitempty"`
-	// DomainType - Valid values are Regular domain: Azure will charge the full price of domain registration, SoftDeleted: Purchasing this domain will simply restore it and this operation will not cost anything. Possible values include: 'Regular', 'SoftDeleted'
+	// DomainType - Valid values are Regular domain: Azure will charge the full price of domain registration, SoftDeleted: Purchasing this domain will simply restore it and this operation will not cost anything. Possible values include: 'DomainTypeRegular', 'DomainTypeSoftDeleted'
 	DomainType DomainType `json:"domainType,omitempty"`
 }
 
@@ -12674,11 +12620,11 @@ type DomainPatchResourceProperties struct {
 	Consent *DomainPurchaseConsent `json:"consent,omitempty"`
 	// DomainNotRenewableReasons - READ-ONLY; Reasons why domain is not renewable.
 	DomainNotRenewableReasons *[]string `json:"domainNotRenewableReasons,omitempty"`
-	// DNSType - Current DNS type. Possible values include: 'AzureDNS', 'DefaultDomainRegistrarDNS'
+	// DNSType - Current DNS type. Possible values include: 'DNSTypeAzureDNS', 'DNSTypeDefaultDomainRegistrarDNS'
 	DNSType DNSType `json:"dnsType,omitempty"`
 	// DNSZoneID - Azure DNS Zone to use
 	DNSZoneID *string `json:"dnsZoneId,omitempty"`
-	// TargetDNSType - Target DNS type (would be used for migration). Possible values include: 'AzureDNS', 'DefaultDomainRegistrarDNS'
+	// TargetDNSType - Target DNS type (would be used for migration). Possible values include: 'DNSTypeAzureDNS', 'DNSTypeDefaultDomainRegistrarDNS'
 	TargetDNSType DNSType `json:"targetDnsType,omitempty"`
 	AuthCode      *string `json:"authCode,omitempty"`
 }
@@ -12757,11 +12703,11 @@ type DomainProperties struct {
 	Consent *DomainPurchaseConsent `json:"consent,omitempty"`
 	// DomainNotRenewableReasons - READ-ONLY; Reasons why domain is not renewable.
 	DomainNotRenewableReasons *[]string `json:"domainNotRenewableReasons,omitempty"`
-	// DNSType - Current DNS type. Possible values include: 'AzureDNS', 'DefaultDomainRegistrarDNS'
+	// DNSType - Current DNS type. Possible values include: 'DNSTypeAzureDNS', 'DNSTypeDefaultDomainRegistrarDNS'
 	DNSType DNSType `json:"dnsType,omitempty"`
 	// DNSZoneID - Azure DNS Zone to use
 	DNSZoneID *string `json:"dnsZoneId,omitempty"`
-	// TargetDNSType - Target DNS type (would be used for migration). Possible values include: 'AzureDNS', 'DefaultDomainRegistrarDNS'
+	// TargetDNSType - Target DNS type (would be used for migration). Possible values include: 'DNSTypeAzureDNS', 'DNSTypeDefaultDomainRegistrarDNS'
 	TargetDNSType DNSType `json:"targetDnsType,omitempty"`
 	AuthCode      *string `json:"authCode,omitempty"`
 }
@@ -12917,6 +12863,23 @@ type Experiments struct {
 	RampUpRules *[]RampUpRule `json:"rampUpRules,omitempty"`
 }
 
+// ExtendedLocation extended Location.
+type ExtendedLocation struct {
+	// Name - Name of extended location.
+	Name *string `json:"name,omitempty"`
+	// Type - READ-ONLY; Type of extended location.
+	Type *string `json:"type,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for ExtendedLocation.
+func (el ExtendedLocation) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if el.Name != nil {
+		objectMap["name"] = el.Name
+	}
+	return json.Marshal(objectMap)
+}
+
 // Facebook the configuration settings of the Facebook provider.
 type Facebook struct {
 	// FacebookProperties - Facebook resource specific properties
@@ -13017,7 +12980,7 @@ type FacebookProperties struct {
 
 // FileSystemApplicationLogsConfig application logs to file system configuration.
 type FileSystemApplicationLogsConfig struct {
-	// Level - Log level. Possible values include: 'Off', 'Verbose', 'Information', 'Warning', 'Error'
+	// Level - Log level. Possible values include: 'LogLevelOff', 'LogLevelVerbose', 'LogLevelInformation', 'LogLevelWarning', 'LogLevelError'
 	Level LogLevel `json:"level,omitempty"`
 }
 
@@ -13221,6 +13184,12 @@ type ForwardProxyProperties struct {
 	CustomHostHeaderName *string `json:"customHostHeaderName,omitempty"`
 	// CustomProtoHeaderName - The name of the header containing the scheme of the request.
 	CustomProtoHeaderName *string `json:"customProtoHeaderName,omitempty"`
+}
+
+// FrontEndConfiguration ...
+type FrontEndConfiguration struct {
+	// Kind - Possible values include: 'FrontEndServiceTypeNodePort', 'FrontEndServiceTypeLoadBalancer'
+	Kind FrontEndServiceType `json:"kind,omitempty"`
 }
 
 // FunctionAppMajorVersion function App stack major version.
@@ -13580,7 +13549,7 @@ type FunctionAppStackProperties struct {
 	Value *string `json:"value,omitempty"`
 	// MajorVersions - READ-ONLY; List of major versions available.
 	MajorVersions *[]FunctionAppMajorVersion `json:"majorVersions,omitempty"`
-	// PreferredOs - READ-ONLY; Function App stack preferred OS. Possible values include: 'Windows', 'Linux'
+	// PreferredOs - READ-ONLY; Function App stack preferred OS. Possible values include: 'StackPreferredOsWindows', 'StackPreferredOsLinux'
 	PreferredOs StackPreferredOs `json:"preferredOs,omitempty"`
 }
 
@@ -14641,11 +14610,11 @@ type HostName struct {
 	SiteNames *[]string `json:"siteNames,omitempty"`
 	// AzureResourceName - Name of the Azure resource the hostname is assigned to. If it is assigned to a Traffic Manager then it will be the Traffic Manager name otherwise it will be the app name.
 	AzureResourceName *string `json:"azureResourceName,omitempty"`
-	// AzureResourceType - Type of the Azure resource the hostname is assigned to. Possible values include: 'Website', 'TrafficManager'
+	// AzureResourceType - Type of the Azure resource the hostname is assigned to. Possible values include: 'AzureResourceTypeWebsite', 'AzureResourceTypeTrafficManager'
 	AzureResourceType AzureResourceType `json:"azureResourceType,omitempty"`
-	// CustomHostNameDNSRecordType - Type of the DNS record. Possible values include: 'CName', 'A'
+	// CustomHostNameDNSRecordType - Type of the DNS record. Possible values include: 'CustomHostNameDNSRecordTypeCName', 'CustomHostNameDNSRecordTypeA'
 	CustomHostNameDNSRecordType CustomHostNameDNSRecordType `json:"customHostNameDnsRecordType,omitempty"`
-	// HostNameType - Type of the hostname. Possible values include: 'Verified', 'Managed'
+	// HostNameType - Type of the hostname. Possible values include: 'HostNameTypeVerified', 'HostNameTypeManaged'
 	HostNameType HostNameType `json:"hostNameType,omitempty"`
 }
 
@@ -14912,11 +14881,11 @@ type HostNameBindingProperties struct {
 	DomainID *string `json:"domainId,omitempty"`
 	// AzureResourceName - Azure resource name.
 	AzureResourceName *string `json:"azureResourceName,omitempty"`
-	// AzureResourceType - Azure resource type. Possible values include: 'Website', 'TrafficManager'
+	// AzureResourceType - Azure resource type. Possible values include: 'AzureResourceTypeWebsite', 'AzureResourceTypeTrafficManager'
 	AzureResourceType AzureResourceType `json:"azureResourceType,omitempty"`
-	// CustomHostNameDNSRecordType - Custom DNS record type. Possible values include: 'CName', 'A'
+	// CustomHostNameDNSRecordType - Custom DNS record type. Possible values include: 'CustomHostNameDNSRecordTypeCName', 'CustomHostNameDNSRecordTypeA'
 	CustomHostNameDNSRecordType CustomHostNameDNSRecordType `json:"customHostNameDnsRecordType,omitempty"`
-	// HostNameType - Hostname type. Possible values include: 'Verified', 'Managed'
+	// HostNameType - Hostname type. Possible values include: 'HostNameTypeVerified', 'HostNameTypeManaged'
 	HostNameType HostNameType `json:"hostNameType,omitempty"`
 	// SslState - SSL type. Possible values include: 'SslStateDisabled', 'SslStateSniEnabled', 'SslStateIPBasedEnabled'
 	SslState SslState `json:"sslState,omitempty"`
@@ -16250,7 +16219,7 @@ type IPSecurityRestriction struct {
 	SubnetTrafficTag *int32 `json:"subnetTrafficTag,omitempty"`
 	// Action - Allow or Deny access for this IP range.
 	Action *string `json:"action,omitempty"`
-	// Tag - Defines what this IP filter will be used for. This is to support IP filtering on proxies. Possible values include: 'Default', 'XffProxy', 'ServiceTag'
+	// Tag - Defines what this IP filter will be used for. This is to support IP filtering on proxies. Possible values include: 'IPFilterTagDefault', 'IPFilterTagXffProxy', 'IPFilterTagServiceTag'
 	Tag IPFilterTag `json:"tag,omitempty"`
 	// Priority - Priority of IP restriction rule.
 	Priority *int32 `json:"priority,omitempty"`
@@ -16577,7 +16546,7 @@ type JobProperties struct {
 	URL *string `json:"url,omitempty"`
 	// ExtraInfoURL - Extra Info URL.
 	ExtraInfoURL *string `json:"extra_info_url,omitempty"`
-	// WebJobType - Job type. Possible values include: 'Continuous', 'Triggered'
+	// WebJobType - Job type. Possible values include: 'JobTypeContinuous', 'JobTypeTriggered'
 	WebJobType JobType `json:"web_job_type,omitempty"`
 	// Error - Error information.
 	Error *string `json:"error,omitempty"`
@@ -16732,6 +16701,432 @@ func (kvpSo KeyValuePairStringObject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(objectMap)
 }
 
+// KubeEnvironment a Kubernetes cluster specialized for web workloads by Azure App Service
+type KubeEnvironment struct {
+	autorest.Response `json:"-"`
+	// KubeEnvironmentProperties - KubeEnvironment resource specific properties
+	*KubeEnvironmentProperties `json:"properties,omitempty"`
+	ExtendedLocation           *ExtendedLocation `json:"extendedLocation,omitempty"`
+	// ID - READ-ONLY; Resource Id.
+	ID *string `json:"id,omitempty"`
+	// Name - READ-ONLY; Resource Name.
+	Name *string `json:"name,omitempty"`
+	// Kind - Kind of resource.
+	Kind *string `json:"kind,omitempty"`
+	// Location - Resource Location.
+	Location *string `json:"location,omitempty"`
+	// Type - READ-ONLY; Resource type.
+	Type *string `json:"type,omitempty"`
+	// Tags - Resource tags.
+	Tags map[string]*string `json:"tags"`
+}
+
+// MarshalJSON is the custom marshaler for KubeEnvironment.
+func (ke KubeEnvironment) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if ke.KubeEnvironmentProperties != nil {
+		objectMap["properties"] = ke.KubeEnvironmentProperties
+	}
+	if ke.ExtendedLocation != nil {
+		objectMap["extendedLocation"] = ke.ExtendedLocation
+	}
+	if ke.Kind != nil {
+		objectMap["kind"] = ke.Kind
+	}
+	if ke.Location != nil {
+		objectMap["location"] = ke.Location
+	}
+	if ke.Tags != nil {
+		objectMap["tags"] = ke.Tags
+	}
+	return json.Marshal(objectMap)
+}
+
+// UnmarshalJSON is the custom unmarshaler for KubeEnvironment struct.
+func (ke *KubeEnvironment) UnmarshalJSON(body []byte) error {
+	var m map[string]*json.RawMessage
+	err := json.Unmarshal(body, &m)
+	if err != nil {
+		return err
+	}
+	for k, v := range m {
+		switch k {
+		case "properties":
+			if v != nil {
+				var kubeEnvironmentProperties KubeEnvironmentProperties
+				err = json.Unmarshal(*v, &kubeEnvironmentProperties)
+				if err != nil {
+					return err
+				}
+				ke.KubeEnvironmentProperties = &kubeEnvironmentProperties
+			}
+		case "extendedLocation":
+			if v != nil {
+				var extendedLocation ExtendedLocation
+				err = json.Unmarshal(*v, &extendedLocation)
+				if err != nil {
+					return err
+				}
+				ke.ExtendedLocation = &extendedLocation
+			}
+		case "id":
+			if v != nil {
+				var ID string
+				err = json.Unmarshal(*v, &ID)
+				if err != nil {
+					return err
+				}
+				ke.ID = &ID
+			}
+		case "name":
+			if v != nil {
+				var name string
+				err = json.Unmarshal(*v, &name)
+				if err != nil {
+					return err
+				}
+				ke.Name = &name
+			}
+		case "kind":
+			if v != nil {
+				var kind string
+				err = json.Unmarshal(*v, &kind)
+				if err != nil {
+					return err
+				}
+				ke.Kind = &kind
+			}
+		case "location":
+			if v != nil {
+				var location string
+				err = json.Unmarshal(*v, &location)
+				if err != nil {
+					return err
+				}
+				ke.Location = &location
+			}
+		case "type":
+			if v != nil {
+				var typeVar string
+				err = json.Unmarshal(*v, &typeVar)
+				if err != nil {
+					return err
+				}
+				ke.Type = &typeVar
+			}
+		case "tags":
+			if v != nil {
+				var tags map[string]*string
+				err = json.Unmarshal(*v, &tags)
+				if err != nil {
+					return err
+				}
+				ke.Tags = tags
+			}
+		}
+	}
+
+	return nil
+}
+
+// KubeEnvironmentCollection collection of Kubernetes Environments
+type KubeEnvironmentCollection struct {
+	autorest.Response `json:"-"`
+	// Value - Collection of resources.
+	Value *[]KubeEnvironment `json:"value,omitempty"`
+	// NextLink - READ-ONLY; Link to next page of resources.
+	NextLink *string `json:"nextLink,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for KubeEnvironmentCollection.
+func (kec KubeEnvironmentCollection) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if kec.Value != nil {
+		objectMap["value"] = kec.Value
+	}
+	return json.Marshal(objectMap)
+}
+
+// KubeEnvironmentCollectionIterator provides access to a complete listing of KubeEnvironment values.
+type KubeEnvironmentCollectionIterator struct {
+	i    int
+	page KubeEnvironmentCollectionPage
+}
+
+// NextWithContext advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+func (iter *KubeEnvironmentCollectionIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/KubeEnvironmentCollectionIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	iter.i++
+	if iter.i < len(iter.page.Values()) {
+		return nil
+	}
+	err = iter.page.NextWithContext(ctx)
+	if err != nil {
+		iter.i--
+		return err
+	}
+	iter.i = 0
+	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *KubeEnvironmentCollectionIterator) Next() error {
+	return iter.NextWithContext(context.Background())
+}
+
+// NotDone returns true if the enumeration should be started or is not yet complete.
+func (iter KubeEnvironmentCollectionIterator) NotDone() bool {
+	return iter.page.NotDone() && iter.i < len(iter.page.Values())
+}
+
+// Response returns the raw server response from the last page request.
+func (iter KubeEnvironmentCollectionIterator) Response() KubeEnvironmentCollection {
+	return iter.page.Response()
+}
+
+// Value returns the current value or a zero-initialized value if the
+// iterator has advanced beyond the end of the collection.
+func (iter KubeEnvironmentCollectionIterator) Value() KubeEnvironment {
+	if !iter.page.NotDone() {
+		return KubeEnvironment{}
+	}
+	return iter.page.Values()[iter.i]
+}
+
+// Creates a new instance of the KubeEnvironmentCollectionIterator type.
+func NewKubeEnvironmentCollectionIterator(page KubeEnvironmentCollectionPage) KubeEnvironmentCollectionIterator {
+	return KubeEnvironmentCollectionIterator{page: page}
+}
+
+// IsEmpty returns true if the ListResult contains no values.
+func (kec KubeEnvironmentCollection) IsEmpty() bool {
+	return kec.Value == nil || len(*kec.Value) == 0
+}
+
+// hasNextLink returns true if the NextLink is not empty.
+func (kec KubeEnvironmentCollection) hasNextLink() bool {
+	return kec.NextLink != nil && len(*kec.NextLink) != 0
+}
+
+// kubeEnvironmentCollectionPreparer prepares a request to retrieve the next set of results.
+// It returns nil if no more results exist.
+func (kec KubeEnvironmentCollection) kubeEnvironmentCollectionPreparer(ctx context.Context) (*http.Request, error) {
+	if !kec.hasNextLink() {
+		return nil, nil
+	}
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
+		autorest.AsJSON(),
+		autorest.AsGet(),
+		autorest.WithBaseURL(to.String(kec.NextLink)))
+}
+
+// KubeEnvironmentCollectionPage contains a page of KubeEnvironment values.
+type KubeEnvironmentCollectionPage struct {
+	fn  func(context.Context, KubeEnvironmentCollection) (KubeEnvironmentCollection, error)
+	kec KubeEnvironmentCollection
+}
+
+// NextWithContext advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+func (page *KubeEnvironmentCollectionPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/KubeEnvironmentCollectionPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	for {
+		next, err := page.fn(ctx, page.kec)
+		if err != nil {
+			return err
+		}
+		page.kec = next
+		if !next.hasNextLink() || !next.IsEmpty() {
+			break
+		}
+	}
+	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *KubeEnvironmentCollectionPage) Next() error {
+	return page.NextWithContext(context.Background())
+}
+
+// NotDone returns true if the page enumeration should be started or is not yet complete.
+func (page KubeEnvironmentCollectionPage) NotDone() bool {
+	return !page.kec.IsEmpty()
+}
+
+// Response returns the raw server response from the last page request.
+func (page KubeEnvironmentCollectionPage) Response() KubeEnvironmentCollection {
+	return page.kec
+}
+
+// Values returns the slice of values for the current page or nil if there are no values.
+func (page KubeEnvironmentCollectionPage) Values() []KubeEnvironment {
+	if page.kec.IsEmpty() {
+		return nil
+	}
+	return *page.kec.Value
+}
+
+// Creates a new instance of the KubeEnvironmentCollectionPage type.
+func NewKubeEnvironmentCollectionPage(cur KubeEnvironmentCollection, getNextPage func(context.Context, KubeEnvironmentCollection) (KubeEnvironmentCollection, error)) KubeEnvironmentCollectionPage {
+	return KubeEnvironmentCollectionPage{
+		fn:  getNextPage,
+		kec: cur,
+	}
+}
+
+// KubeEnvironmentPatchResource ARM resource for a KubeEnvironment when patching
+type KubeEnvironmentPatchResource struct {
+	// KubeEnvironmentPatchResourceProperties - KubeEnvironmentPatchResource resource specific properties
+	*KubeEnvironmentPatchResourceProperties `json:"properties,omitempty"`
+	// ID - READ-ONLY; Resource Id.
+	ID *string `json:"id,omitempty"`
+	// Name - READ-ONLY; Resource Name.
+	Name *string `json:"name,omitempty"`
+	// Kind - Kind of resource.
+	Kind *string `json:"kind,omitempty"`
+	// Type - READ-ONLY; Resource type.
+	Type *string `json:"type,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for KubeEnvironmentPatchResource.
+func (kepr KubeEnvironmentPatchResource) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if kepr.KubeEnvironmentPatchResourceProperties != nil {
+		objectMap["properties"] = kepr.KubeEnvironmentPatchResourceProperties
+	}
+	if kepr.Kind != nil {
+		objectMap["kind"] = kepr.Kind
+	}
+	return json.Marshal(objectMap)
+}
+
+// UnmarshalJSON is the custom unmarshaler for KubeEnvironmentPatchResource struct.
+func (kepr *KubeEnvironmentPatchResource) UnmarshalJSON(body []byte) error {
+	var m map[string]*json.RawMessage
+	err := json.Unmarshal(body, &m)
+	if err != nil {
+		return err
+	}
+	for k, v := range m {
+		switch k {
+		case "properties":
+			if v != nil {
+				var kubeEnvironmentPatchResourceProperties KubeEnvironmentPatchResourceProperties
+				err = json.Unmarshal(*v, &kubeEnvironmentPatchResourceProperties)
+				if err != nil {
+					return err
+				}
+				kepr.KubeEnvironmentPatchResourceProperties = &kubeEnvironmentPatchResourceProperties
+			}
+		case "id":
+			if v != nil {
+				var ID string
+				err = json.Unmarshal(*v, &ID)
+				if err != nil {
+					return err
+				}
+				kepr.ID = &ID
+			}
+		case "name":
+			if v != nil {
+				var name string
+				err = json.Unmarshal(*v, &name)
+				if err != nil {
+					return err
+				}
+				kepr.Name = &name
+			}
+		case "kind":
+			if v != nil {
+				var kind string
+				err = json.Unmarshal(*v, &kind)
+				if err != nil {
+					return err
+				}
+				kepr.Kind = &kind
+			}
+		case "type":
+			if v != nil {
+				var typeVar string
+				err = json.Unmarshal(*v, &typeVar)
+				if err != nil {
+					return err
+				}
+				kepr.Type = &typeVar
+			}
+		}
+	}
+
+	return nil
+}
+
+// KubeEnvironmentPatchResourceProperties kubeEnvironmentPatchResource resource specific properties
+type KubeEnvironmentPatchResourceProperties struct {
+	// ProvisioningState - READ-ONLY; Provisioning state of the Kubernetes Environment. Possible values include: 'KubeEnvironmentProvisioningStateSucceeded', 'KubeEnvironmentProvisioningStateFailed', 'KubeEnvironmentProvisioningStateCanceled', 'KubeEnvironmentProvisioningStateWaiting', 'KubeEnvironmentProvisioningStateInitializationInProgress', 'KubeEnvironmentProvisioningStateInfrastructureSetupInProgress', 'KubeEnvironmentProvisioningStateInfrastructureSetupComplete', 'KubeEnvironmentProvisioningStateScheduledForDelete', 'KubeEnvironmentProvisioningStateUpgradeRequested', 'KubeEnvironmentProvisioningStateUpgradeFailed'
+	ProvisioningState KubeEnvironmentProvisioningState `json:"provisioningState,omitempty"`
+	// DeploymentErrors - READ-ONLY; Any errors that occurred during deployment or deployment validation
+	DeploymentErrors *string `json:"deploymentErrors,omitempty"`
+	// InternalLoadBalancerEnabled - Only visible within Vnet/Subnet
+	InternalLoadBalancerEnabled *bool `json:"internalLoadBalancerEnabled,omitempty"`
+	// DefaultDomain - READ-ONLY; Default Domain Name for the cluster
+	DefaultDomain *string `json:"defaultDomain,omitempty"`
+	// StaticIP - Static IP of the KubeEnvironment
+	StaticIP *string `json:"staticIp,omitempty"`
+	// ArcConfiguration - Cluster configuration which determines the ARC cluster
+	// components types. Eg: Choosing between BuildService kind,
+	// FrontEnd Service ArtifactsStorageType etc.
+	ArcConfiguration *ArcConfiguration `json:"arcConfiguration,omitempty"`
+	// AppLogsConfiguration - Cluster configuration which enables the log daemon to export
+	// app logs to a destination. Currently only "log-analytics" is
+	// supported
+	AppLogsConfiguration *AppLogsConfiguration `json:"appLogsConfiguration,omitempty"`
+	AksResourceID        *string               `json:"aksResourceID,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for KubeEnvironmentPatchResourceProperties.
+func (kepr KubeEnvironmentPatchResourceProperties) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if kepr.InternalLoadBalancerEnabled != nil {
+		objectMap["internalLoadBalancerEnabled"] = kepr.InternalLoadBalancerEnabled
+	}
+	if kepr.StaticIP != nil {
+		objectMap["staticIp"] = kepr.StaticIP
+	}
+	if kepr.ArcConfiguration != nil {
+		objectMap["arcConfiguration"] = kepr.ArcConfiguration
+	}
+	if kepr.AppLogsConfiguration != nil {
+		objectMap["appLogsConfiguration"] = kepr.AppLogsConfiguration
+	}
+	if kepr.AksResourceID != nil {
+		objectMap["aksResourceID"] = kepr.AksResourceID
+	}
+	return json.Marshal(objectMap)
+}
+
 // KubeEnvironmentProfile specification for a Kubernetes Environment to use for this resource.
 type KubeEnvironmentProfile struct {
 	// ID - Resource ID of the Kubernetes Environment.
@@ -16749,6 +17144,130 @@ func (kep KubeEnvironmentProfile) MarshalJSON() ([]byte, error) {
 		objectMap["id"] = kep.ID
 	}
 	return json.Marshal(objectMap)
+}
+
+// KubeEnvironmentProperties kubeEnvironment resource specific properties
+type KubeEnvironmentProperties struct {
+	// ProvisioningState - READ-ONLY; Provisioning state of the Kubernetes Environment. Possible values include: 'KubeEnvironmentProvisioningStateSucceeded', 'KubeEnvironmentProvisioningStateFailed', 'KubeEnvironmentProvisioningStateCanceled', 'KubeEnvironmentProvisioningStateWaiting', 'KubeEnvironmentProvisioningStateInitializationInProgress', 'KubeEnvironmentProvisioningStateInfrastructureSetupInProgress', 'KubeEnvironmentProvisioningStateInfrastructureSetupComplete', 'KubeEnvironmentProvisioningStateScheduledForDelete', 'KubeEnvironmentProvisioningStateUpgradeRequested', 'KubeEnvironmentProvisioningStateUpgradeFailed'
+	ProvisioningState KubeEnvironmentProvisioningState `json:"provisioningState,omitempty"`
+	// DeploymentErrors - READ-ONLY; Any errors that occurred during deployment or deployment validation
+	DeploymentErrors *string `json:"deploymentErrors,omitempty"`
+	// InternalLoadBalancerEnabled - Only visible within Vnet/Subnet
+	InternalLoadBalancerEnabled *bool `json:"internalLoadBalancerEnabled,omitempty"`
+	// DefaultDomain - READ-ONLY; Default Domain Name for the cluster
+	DefaultDomain *string `json:"defaultDomain,omitempty"`
+	// StaticIP - Static IP of the KubeEnvironment
+	StaticIP *string `json:"staticIp,omitempty"`
+	// ArcConfiguration - Cluster configuration which determines the ARC cluster
+	// components types. Eg: Choosing between BuildService kind,
+	// FrontEnd Service ArtifactsStorageType etc.
+	ArcConfiguration *ArcConfiguration `json:"arcConfiguration,omitempty"`
+	// AppLogsConfiguration - Cluster configuration which enables the log daemon to export
+	// app logs to a destination. Currently only "log-analytics" is
+	// supported
+	AppLogsConfiguration *AppLogsConfiguration `json:"appLogsConfiguration,omitempty"`
+	AksResourceID        *string               `json:"aksResourceID,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for KubeEnvironmentProperties.
+func (ke KubeEnvironmentProperties) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if ke.InternalLoadBalancerEnabled != nil {
+		objectMap["internalLoadBalancerEnabled"] = ke.InternalLoadBalancerEnabled
+	}
+	if ke.StaticIP != nil {
+		objectMap["staticIp"] = ke.StaticIP
+	}
+	if ke.ArcConfiguration != nil {
+		objectMap["arcConfiguration"] = ke.ArcConfiguration
+	}
+	if ke.AppLogsConfiguration != nil {
+		objectMap["appLogsConfiguration"] = ke.AppLogsConfiguration
+	}
+	if ke.AksResourceID != nil {
+		objectMap["aksResourceID"] = ke.AksResourceID
+	}
+	return json.Marshal(objectMap)
+}
+
+// KubeEnvironmentsCreateOrUpdateFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
+type KubeEnvironmentsCreateOrUpdateFuture struct {
+	azure.FutureAPI
+	// Result returns the result of the asynchronous operation.
+	// If the operation has not completed it will return an error.
+	Result func(KubeEnvironmentsClient) (KubeEnvironment, error)
+}
+
+// UnmarshalJSON is the custom unmarshaller for CreateFuture.
+func (future *KubeEnvironmentsCreateOrUpdateFuture) UnmarshalJSON(body []byte) error {
+	var azFuture azure.Future
+	if err := json.Unmarshal(body, &azFuture); err != nil {
+		return err
+	}
+	future.FutureAPI = &azFuture
+	future.Result = future.result
+	return nil
+}
+
+// result is the default implementation for KubeEnvironmentsCreateOrUpdateFuture.Result.
+func (future *KubeEnvironmentsCreateOrUpdateFuture) result(client KubeEnvironmentsClient) (ke KubeEnvironment, err error) {
+	var done bool
+	done, err = future.DoneWithContext(context.Background(), client)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "web.KubeEnvironmentsCreateOrUpdateFuture", "Result", future.Response(), "Polling failure")
+		return
+	}
+	if !done {
+		ke.Response.Response = future.Response()
+		err = azure.NewAsyncOpIncompleteError("web.KubeEnvironmentsCreateOrUpdateFuture")
+		return
+	}
+	sender := autorest.DecorateSender(client, autorest.DoRetryForStatusCodes(client.RetryAttempts, client.RetryDuration, autorest.StatusCodesForRetry...))
+	if ke.Response.Response, err = future.GetResult(sender); err == nil && ke.Response.Response.StatusCode != http.StatusNoContent {
+		ke, err = client.CreateOrUpdateResponder(ke.Response.Response)
+		if err != nil {
+			err = autorest.NewErrorWithError(err, "web.KubeEnvironmentsCreateOrUpdateFuture", "Result", ke.Response.Response, "Failure responding to request")
+		}
+	}
+	return
+}
+
+// KubeEnvironmentsDeleteFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
+type KubeEnvironmentsDeleteFuture struct {
+	azure.FutureAPI
+	// Result returns the result of the asynchronous operation.
+	// If the operation has not completed it will return an error.
+	Result func(KubeEnvironmentsClient) (autorest.Response, error)
+}
+
+// UnmarshalJSON is the custom unmarshaller for CreateFuture.
+func (future *KubeEnvironmentsDeleteFuture) UnmarshalJSON(body []byte) error {
+	var azFuture azure.Future
+	if err := json.Unmarshal(body, &azFuture); err != nil {
+		return err
+	}
+	future.FutureAPI = &azFuture
+	future.Result = future.result
+	return nil
+}
+
+// result is the default implementation for KubeEnvironmentsDeleteFuture.Result.
+func (future *KubeEnvironmentsDeleteFuture) result(client KubeEnvironmentsClient) (ar autorest.Response, err error) {
+	var done bool
+	done, err = future.DoneWithContext(context.Background(), client)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "web.KubeEnvironmentsDeleteFuture", "Result", future.Response(), "Polling failure")
+		return
+	}
+	if !done {
+		ar.Response = future.Response()
+		err = azure.NewAsyncOpIncompleteError("web.KubeEnvironmentsDeleteFuture")
+		return
+	}
+	ar.Response = future.Response()
+	return
 }
 
 // LegacyMicrosoftAccount the configuration settings of the legacy Microsoft Account provider.
@@ -16935,6 +17454,12 @@ type LocalizableString struct {
 	Value *string `json:"value,omitempty"`
 	// LocalizedValue - Localized name.
 	LocalizedValue *string `json:"localizedValue,omitempty"`
+}
+
+// LogAnalyticsConfiguration ...
+type LogAnalyticsConfiguration struct {
+	CustomerID *string `json:"customerId,omitempty"`
+	SharedKey  *string `json:"sharedKey,omitempty"`
 }
 
 // Login the configuration settings of the login flow of users using App Service
@@ -17243,7 +17768,7 @@ type ManagedServiceIdentity struct {
 	// PrincipalID - READ-ONLY; Principal Id of managed service identity.
 	PrincipalID *string `json:"principalId,omitempty"`
 	// UserAssignedIdentities - The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}
-	UserAssignedIdentities map[string]*ManagedServiceIdentityUserAssignedIdentitiesValue `json:"userAssignedIdentities"`
+	UserAssignedIdentities map[string]*UserAssignedIdentity `json:"userAssignedIdentities"`
 }
 
 // MarshalJSON is the custom marshaler for ManagedServiceIdentity.
@@ -17255,20 +17780,6 @@ func (msi ManagedServiceIdentity) MarshalJSON() ([]byte, error) {
 	if msi.UserAssignedIdentities != nil {
 		objectMap["userAssignedIdentities"] = msi.UserAssignedIdentities
 	}
-	return json.Marshal(objectMap)
-}
-
-// ManagedServiceIdentityUserAssignedIdentitiesValue ...
-type ManagedServiceIdentityUserAssignedIdentitiesValue struct {
-	// PrincipalID - READ-ONLY; Principal Id of user assigned identity
-	PrincipalID *string `json:"principalId,omitempty"`
-	// ClientID - READ-ONLY; Client Id of user assigned identity
-	ClientID *string `json:"clientId,omitempty"`
-}
-
-// MarshalJSON is the custom marshaler for ManagedServiceIdentityUserAssignedIdentitiesValue.
-func (msiAiv ManagedServiceIdentityUserAssignedIdentitiesValue) MarshalJSON() ([]byte, error) {
-	objectMap := make(map[string]interface{})
 	return json.Marshal(objectMap)
 }
 
@@ -17389,7 +17900,7 @@ func (mmsr *MigrateMySQLRequest) UnmarshalJSON(body []byte) error {
 type MigrateMySQLRequestProperties struct {
 	// ConnectionString - Connection string to the remote MySQL database.
 	ConnectionString *string `json:"connectionString,omitempty"`
-	// MigrationType - The type of migration operation to be done. Possible values include: 'LocalToRemote', 'RemoteToLocal'
+	// MigrationType - The type of migration operation to be done. Possible values include: 'MySQLMigrationTypeLocalToRemote', 'MySQLMigrationTypeRemoteToLocal'
 	MigrationType MySQLMigrationType `json:"migrationType,omitempty"`
 }
 
@@ -18334,7 +18845,7 @@ func (oiccc *OpenIDConnectClientCredential) UnmarshalJSON(body []byte) error {
 
 // OpenIDConnectClientCredentialProperties openIdConnectClientCredential resource specific properties
 type OpenIDConnectClientCredentialProperties struct {
-	// Method - The method that should be used to authenticate the user. Possible values include: 'ClientSecretPost'
+	// Method - The method that should be used to authenticate the user. Possible values include: 'ClientCredentialMethodClientSecretPost'
 	Method ClientCredentialMethod `json:"method,omitempty"`
 	// ClientSecretSettingName - The app setting that contains the client secret for the custom Open ID Connect provider.
 	ClientSecretSettingName *string `json:"clientSecretSettingName,omitempty"`
@@ -19414,7 +19925,7 @@ type PremierAddOnOfferProperties struct {
 	PromoCodeRequired *bool `json:"promoCodeRequired,omitempty"`
 	// Quota - Premier add on offer Quota.
 	Quota *int32 `json:"quota,omitempty"`
-	// WebHostingPlanRestrictions - App Service plans this offer is restricted to. Possible values include: 'None', 'Free', 'Shared', 'Basic', 'Standard', 'Premium'
+	// WebHostingPlanRestrictions - App Service plans this offer is restricted to. Possible values include: 'AppServicePlanRestrictionsNone', 'AppServicePlanRestrictionsFree', 'AppServicePlanRestrictionsShared', 'AppServicePlanRestrictionsBasic', 'AppServicePlanRestrictionsStandard', 'AppServicePlanRestrictionsPremium'
 	WebHostingPlanRestrictions AppServicePlanRestrictions `json:"webHostingPlanRestrictions,omitempty"`
 	// PrivacyPolicyURL - Privacy policy URL.
 	PrivacyPolicyURL *string `json:"privacyPolicyUrl,omitempty"`
@@ -21300,6 +21811,176 @@ func (pc PublicCertificateProperties) MarshalJSON() ([]byte, error) {
 	return json.Marshal(objectMap)
 }
 
+// PublishingCredentialsPoliciesCollection publishing Credentials Policies entity collection ARM resource.
+type PublishingCredentialsPoliciesCollection struct {
+	autorest.Response `json:"-"`
+	// Value - Collection of resources.
+	Value *[]CsmPublishingCredentialsPoliciesEntity `json:"value,omitempty"`
+	// NextLink - READ-ONLY; Link to next page of resources.
+	NextLink *string `json:"nextLink,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for PublishingCredentialsPoliciesCollection.
+func (pcpc PublishingCredentialsPoliciesCollection) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if pcpc.Value != nil {
+		objectMap["value"] = pcpc.Value
+	}
+	return json.Marshal(objectMap)
+}
+
+// PublishingCredentialsPoliciesCollectionIterator provides access to a complete listing of
+// CsmPublishingCredentialsPoliciesEntity values.
+type PublishingCredentialsPoliciesCollectionIterator struct {
+	i    int
+	page PublishingCredentialsPoliciesCollectionPage
+}
+
+// NextWithContext advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+func (iter *PublishingCredentialsPoliciesCollectionIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PublishingCredentialsPoliciesCollectionIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	iter.i++
+	if iter.i < len(iter.page.Values()) {
+		return nil
+	}
+	err = iter.page.NextWithContext(ctx)
+	if err != nil {
+		iter.i--
+		return err
+	}
+	iter.i = 0
+	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *PublishingCredentialsPoliciesCollectionIterator) Next() error {
+	return iter.NextWithContext(context.Background())
+}
+
+// NotDone returns true if the enumeration should be started or is not yet complete.
+func (iter PublishingCredentialsPoliciesCollectionIterator) NotDone() bool {
+	return iter.page.NotDone() && iter.i < len(iter.page.Values())
+}
+
+// Response returns the raw server response from the last page request.
+func (iter PublishingCredentialsPoliciesCollectionIterator) Response() PublishingCredentialsPoliciesCollection {
+	return iter.page.Response()
+}
+
+// Value returns the current value or a zero-initialized value if the
+// iterator has advanced beyond the end of the collection.
+func (iter PublishingCredentialsPoliciesCollectionIterator) Value() CsmPublishingCredentialsPoliciesEntity {
+	if !iter.page.NotDone() {
+		return CsmPublishingCredentialsPoliciesEntity{}
+	}
+	return iter.page.Values()[iter.i]
+}
+
+// Creates a new instance of the PublishingCredentialsPoliciesCollectionIterator type.
+func NewPublishingCredentialsPoliciesCollectionIterator(page PublishingCredentialsPoliciesCollectionPage) PublishingCredentialsPoliciesCollectionIterator {
+	return PublishingCredentialsPoliciesCollectionIterator{page: page}
+}
+
+// IsEmpty returns true if the ListResult contains no values.
+func (pcpc PublishingCredentialsPoliciesCollection) IsEmpty() bool {
+	return pcpc.Value == nil || len(*pcpc.Value) == 0
+}
+
+// hasNextLink returns true if the NextLink is not empty.
+func (pcpc PublishingCredentialsPoliciesCollection) hasNextLink() bool {
+	return pcpc.NextLink != nil && len(*pcpc.NextLink) != 0
+}
+
+// publishingCredentialsPoliciesCollectionPreparer prepares a request to retrieve the next set of results.
+// It returns nil if no more results exist.
+func (pcpc PublishingCredentialsPoliciesCollection) publishingCredentialsPoliciesCollectionPreparer(ctx context.Context) (*http.Request, error) {
+	if !pcpc.hasNextLink() {
+		return nil, nil
+	}
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
+		autorest.AsJSON(),
+		autorest.AsGet(),
+		autorest.WithBaseURL(to.String(pcpc.NextLink)))
+}
+
+// PublishingCredentialsPoliciesCollectionPage contains a page of CsmPublishingCredentialsPoliciesEntity
+// values.
+type PublishingCredentialsPoliciesCollectionPage struct {
+	fn   func(context.Context, PublishingCredentialsPoliciesCollection) (PublishingCredentialsPoliciesCollection, error)
+	pcpc PublishingCredentialsPoliciesCollection
+}
+
+// NextWithContext advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+func (page *PublishingCredentialsPoliciesCollectionPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PublishingCredentialsPoliciesCollectionPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	for {
+		next, err := page.fn(ctx, page.pcpc)
+		if err != nil {
+			return err
+		}
+		page.pcpc = next
+		if !next.hasNextLink() || !next.IsEmpty() {
+			break
+		}
+	}
+	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *PublishingCredentialsPoliciesCollectionPage) Next() error {
+	return page.NextWithContext(context.Background())
+}
+
+// NotDone returns true if the page enumeration should be started or is not yet complete.
+func (page PublishingCredentialsPoliciesCollectionPage) NotDone() bool {
+	return !page.pcpc.IsEmpty()
+}
+
+// Response returns the raw server response from the last page request.
+func (page PublishingCredentialsPoliciesCollectionPage) Response() PublishingCredentialsPoliciesCollection {
+	return page.pcpc
+}
+
+// Values returns the slice of values for the current page or nil if there are no values.
+func (page PublishingCredentialsPoliciesCollectionPage) Values() []CsmPublishingCredentialsPoliciesEntity {
+	if page.pcpc.IsEmpty() {
+		return nil
+	}
+	return *page.pcpc.Value
+}
+
+// Creates a new instance of the PublishingCredentialsPoliciesCollectionPage type.
+func NewPublishingCredentialsPoliciesCollectionPage(cur PublishingCredentialsPoliciesCollection, getNextPage func(context.Context, PublishingCredentialsPoliciesCollection) (PublishingCredentialsPoliciesCollection, error)) PublishingCredentialsPoliciesCollectionPage {
+	return PublishingCredentialsPoliciesCollectionPage{
+		fn:   getNextPage,
+		pcpc: cur,
+	}
+}
+
 // PushSettings push settings for the App.
 type PushSettings struct {
 	autorest.Response `json:"-"`
@@ -21710,7 +22391,7 @@ type RecommendationProperties struct {
 	RecommendationID *uuid.UUID `json:"recommendationId,omitempty"`
 	// ResourceID - Full ARM resource ID string that this recommendation object is associated with.
 	ResourceID *string `json:"resourceId,omitempty"`
-	// ResourceScope - Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site. Possible values include: 'ServerFarm', 'Subscription', 'WebSite'
+	// ResourceScope - Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site. Possible values include: 'ResourceScopeTypeServerFarm', 'ResourceScopeTypeSubscription', 'ResourceScopeTypeWebSite'
 	ResourceScope ResourceScopeType `json:"resourceScope,omitempty"`
 	// RuleName - Unique name of the rule.
 	RuleName *string `json:"ruleName,omitempty"`
@@ -21720,7 +22401,7 @@ type RecommendationProperties struct {
 	Message *string `json:"message,omitempty"`
 	// Level - Level indicating how critical this recommendation can impact. Possible values include: 'NotificationLevelCritical', 'NotificationLevelWarning', 'NotificationLevelInformation', 'NotificationLevelNonUrgentSuggestion'
 	Level NotificationLevel `json:"level,omitempty"`
-	// Channels - List of channels that this recommendation can apply. Possible values include: 'Notification', 'API', 'Email', 'Webhook', 'All'
+	// Channels - List of channels that this recommendation can apply. Possible values include: 'ChannelsNotification', 'ChannelsAPI', 'ChannelsEmail', 'ChannelsWebhook', 'ChannelsAll'
 	Channels Channels `json:"channels,omitempty"`
 	// CategoryTags - READ-ONLY; The list of category tags that this recommendation belongs to.
 	CategoryTags *[]string `json:"categoryTags,omitempty"`
@@ -21928,7 +22609,7 @@ type RecommendationRuleProperties struct {
 	ActionName *string `json:"actionName,omitempty"`
 	// Level - Level of impact indicating how critical this rule is. Possible values include: 'NotificationLevelCritical', 'NotificationLevelWarning', 'NotificationLevelInformation', 'NotificationLevelNonUrgentSuggestion'
 	Level NotificationLevel `json:"level,omitempty"`
-	// Channels - List of available channels that this rule applies. Possible values include: 'Notification', 'API', 'Email', 'Webhook', 'All'
+	// Channels - List of available channels that this rule applies. Possible values include: 'ChannelsNotification', 'ChannelsAPI', 'ChannelsEmail', 'ChannelsWebhook', 'ChannelsAll'
 	Channels Channels `json:"channels,omitempty"`
 	// CategoryTags - READ-ONLY; The list of category tags that this recommendation rule belongs to.
 	CategoryTags *[]string `json:"categoryTags,omitempty"`
@@ -23277,7 +23958,7 @@ type ResourceNameAvailability struct {
 	autorest.Response `json:"-"`
 	// NameAvailable - <code>true</code> indicates name is valid and available. <code>false</code> indicates the name is invalid, unavailable, or both.
 	NameAvailable *bool `json:"nameAvailable,omitempty"`
-	// Reason - <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable. Possible values include: 'Invalid', 'AlreadyExists'
+	// Reason - <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable. Possible values include: 'InAvailabilityReasonTypeInvalid', 'InAvailabilityReasonTypeAlreadyExists'
 	Reason InAvailabilityReasonType `json:"reason,omitempty"`
 	// Message - If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that resource name is already in use, and direct them to select a different name.
 	Message *string `json:"message,omitempty"`
@@ -23512,8 +24193,9 @@ type SetObject struct {
 type Site struct {
 	autorest.Response `json:"-"`
 	// SiteProperties - Site resource specific properties
-	*SiteProperties `json:"properties,omitempty"`
-	Identity        *ManagedServiceIdentity `json:"identity,omitempty"`
+	*SiteProperties  `json:"properties,omitempty"`
+	Identity         *ManagedServiceIdentity `json:"identity,omitempty"`
+	ExtendedLocation *ExtendedLocation       `json:"extendedLocation,omitempty"`
 	// ID - READ-ONLY; Resource Id.
 	ID *string `json:"id,omitempty"`
 	// Name - READ-ONLY; Resource Name.
@@ -23536,6 +24218,9 @@ func (s Site) MarshalJSON() ([]byte, error) {
 	}
 	if s.Identity != nil {
 		objectMap["identity"] = s.Identity
+	}
+	if s.ExtendedLocation != nil {
+		objectMap["extendedLocation"] = s.ExtendedLocation
 	}
 	if s.Kind != nil {
 		objectMap["kind"] = s.Kind
@@ -23575,6 +24260,15 @@ func (s *Site) UnmarshalJSON(body []byte) error {
 					return err
 				}
 				s.Identity = &identity
+			}
+		case "extendedLocation":
+			if v != nil {
+				var extendedLocation ExtendedLocation
+				err = json.Unmarshal(*v, &extendedLocation)
+				if err != nil {
+					return err
+				}
+				s.ExtendedLocation = &extendedLocation
 			}
 		case "id":
 			if v != nil {
@@ -23731,7 +24425,7 @@ type SiteAuthSettingsProperties struct {
 	// RuntimeVersion - The RuntimeVersion of the Authentication / Authorization feature in use for the current app.
 	// The setting in this value can control the behavior of certain features in the Authentication / Authorization module.
 	RuntimeVersion *string `json:"runtimeVersion,omitempty"`
-	// UnauthenticatedClientAction - The action to take when an unauthenticated client attempts to access the app. Possible values include: 'RedirectToLoginPage', 'AllowAnonymous'
+	// UnauthenticatedClientAction - The action to take when an unauthenticated client attempts to access the app. Possible values include: 'UnauthenticatedClientActionRedirectToLoginPage', 'UnauthenticatedClientActionAllowAnonymous'
 	UnauthenticatedClientAction UnauthenticatedClientAction `json:"unauthenticatedClientAction,omitempty"`
 	// TokenStoreEnabled - <code>true</code> to durably store platform-specific security tokens that are obtained during login flows; otherwise, <code>false</code>.
 	//  The default is <code>false</code>.
@@ -23961,7 +24655,7 @@ type SiteAuthSettingsV2Properties struct {
 // SiteCloneability represents whether or not an app is cloneable.
 type SiteCloneability struct {
 	autorest.Response `json:"-"`
-	// Result - Name of app. Possible values include: 'Cloneable', 'PartiallyCloneable', 'NotCloneable'
+	// Result - Name of app. Possible values include: 'CloneAbilityResultCloneable', 'CloneAbilityResultPartiallyCloneable', 'CloneAbilityResultNotCloneable'
 	Result CloneAbilityResult `json:"result,omitempty"`
 	// BlockingFeatures - List of features enabled on app that prevent cloning.
 	BlockingFeatures *[]SiteCloneabilityCriterion `json:"blockingFeatures,omitempty"`
@@ -24046,11 +24740,11 @@ type SiteConfig struct {
 	JavaContainerVersion *string `json:"javaContainerVersion,omitempty"`
 	// AppCommandLine - App command line to launch.
 	AppCommandLine *string `json:"appCommandLine,omitempty"`
-	// ManagedPipelineMode - Managed pipeline mode. Possible values include: 'Integrated', 'Classic'
+	// ManagedPipelineMode - Managed pipeline mode. Possible values include: 'ManagedPipelineModeIntegrated', 'ManagedPipelineModeClassic'
 	ManagedPipelineMode ManagedPipelineMode `json:"managedPipelineMode,omitempty"`
 	// VirtualApplications - Virtual applications.
 	VirtualApplications *[]VirtualApplication `json:"virtualApplications,omitempty"`
-	// LoadBalancing - Site load balancing. Possible values include: 'WeightedRoundRobin', 'LeastRequests', 'LeastResponseTime', 'WeightedTotalTraffic', 'RequestHash', 'PerSiteRoundRobin'
+	// LoadBalancing - Site load balancing. Possible values include: 'SiteLoadBalancingWeightedRoundRobin', 'SiteLoadBalancingLeastRequests', 'SiteLoadBalancingLeastResponseTime', 'SiteLoadBalancingWeightedTotalTraffic', 'SiteLoadBalancingRequestHash', 'SiteLoadBalancingPerSiteRoundRobin'
 	LoadBalancing SiteLoadBalancing `json:"loadBalancing,omitempty"`
 	// Experiments - This is work around for polymorphic types.
 	Experiments *Experiments `json:"experiments,omitempty"`
@@ -24094,11 +24788,11 @@ type SiteConfig struct {
 	ScmIPSecurityRestrictionsUseMain *bool `json:"scmIpSecurityRestrictionsUseMain,omitempty"`
 	// HTTP20Enabled - Http20Enabled: configures a web site to allow clients to connect over http2.0
 	HTTP20Enabled *bool `json:"http20Enabled,omitempty"`
-	// MinTLSVersion - MinTlsVersion: configures the minimum version of TLS required for SSL requests. Possible values include: 'OneFullStopZero', 'OneFullStopOne', 'OneFullStopTwo'
+	// MinTLSVersion - MinTlsVersion: configures the minimum version of TLS required for SSL requests. Possible values include: 'SupportedTLSVersionsOneFullStopZero', 'SupportedTLSVersionsOneFullStopOne', 'SupportedTLSVersionsOneFullStopTwo'
 	MinTLSVersion SupportedTLSVersions `json:"minTlsVersion,omitempty"`
-	// ScmMinTLSVersion - ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site. Possible values include: 'OneFullStopZero', 'OneFullStopOne', 'OneFullStopTwo'
+	// ScmMinTLSVersion - ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site. Possible values include: 'SupportedTLSVersionsOneFullStopZero', 'SupportedTLSVersionsOneFullStopOne', 'SupportedTLSVersionsOneFullStopTwo'
 	ScmMinTLSVersion SupportedTLSVersions `json:"scmMinTlsVersion,omitempty"`
-	// FtpsState - State of FTP / FTPS service. Possible values include: 'AllAllowed', 'FtpsOnly', 'Disabled'
+	// FtpsState - State of FTP / FTPS service. Possible values include: 'FtpsStateAllAllowed', 'FtpsStateFtpsOnly', 'FtpsStateDisabled'
 	FtpsState FtpsState `json:"ftpsState,omitempty"`
 	// PreWarmedInstanceCount - Number of preWarmed instances.
 	// This setting only applies to the Consumption and Elastic Plans
@@ -25130,7 +25824,7 @@ type SiteExtensionInfoProperties struct {
 	// ExtensionID - Site extension ID.
 	ExtensionID *string `json:"extension_id,omitempty"`
 	Title       *string `json:"title,omitempty"`
-	// ExtensionType - Site extension type. Possible values include: 'Gallery', 'WebRoot'
+	// ExtensionType - Site extension type. Possible values include: 'SiteExtensionTypeGallery', 'SiteExtensionTypeWebRoot'
 	ExtensionType SiteExtensionType `json:"extension_type,omitempty"`
 	// Summary - Summary description.
 	Summary *string `json:"summary,omitempty"`
@@ -25257,7 +25951,7 @@ func (sis *SiteInstanceStatus) UnmarshalJSON(body []byte) error {
 
 // SiteInstanceStatusProperties webSiteInstanceStatus resource specific properties
 type SiteInstanceStatusProperties struct {
-	// State - Possible values include: 'READY', 'STOPPED', 'UNKNOWN'
+	// State - Possible values include: 'SiteRuntimeStateREADY', 'SiteRuntimeStateSTOPPED', 'SiteRuntimeStateUNKNOWN'
 	State SiteRuntimeState `json:"state,omitempty"`
 	// StatusURL - Link to the GetStatusApi in Kudu
 	StatusURL *string `json:"statusUrl,omitempty"`
@@ -25529,7 +26223,7 @@ type SitePatchResourceProperties struct {
 	// EnabledHostNames - READ-ONLY; Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
 	// the app is not served on those hostnames.
 	EnabledHostNames *[]string `json:"enabledHostNames,omitempty"`
-	// AvailabilityState - READ-ONLY; Management information availability state for the app. Possible values include: 'Normal', 'Limited', 'DisasterRecoveryMode'
+	// AvailabilityState - READ-ONLY; Management information availability state for the app. Possible values include: 'SiteAvailabilityStateNormal', 'SiteAvailabilityStateLimited', 'SiteAvailabilityStateDisasterRecoveryMode'
 	AvailabilityState SiteAvailabilityState `json:"availabilityState,omitempty"`
 	// HostNameSslStates - Hostname SSL states are used to manage the SSL bindings for app's hostnames.
 	HostNameSslStates *[]HostNameSslState `json:"hostNameSslStates,omitempty"`
@@ -25560,7 +26254,7 @@ type SitePatchResourceProperties struct {
 	// ClientCertMode - This composes with ClientCertEnabled setting.
 	// - ClientCertEnabled: false means ClientCert is ignored.
 	// - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
-	// - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted. Possible values include: 'Required', 'Optional', 'OptionalInteractiveUser'
+	// - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted. Possible values include: 'ClientCertModeRequired', 'ClientCertModeOptional', 'ClientCertModeOptionalInteractiveUser'
 	ClientCertMode ClientCertMode `json:"clientCertMode,omitempty"`
 	// ClientCertExclusionPaths - client certificate authentication comma-separated exclusion paths
 	ClientCertExclusionPaths *string `json:"clientCertExclusionPaths,omitempty"`
@@ -25797,7 +26491,7 @@ type SiteProperties struct {
 	// EnabledHostNames - READ-ONLY; Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
 	// the app is not served on those hostnames.
 	EnabledHostNames *[]string `json:"enabledHostNames,omitempty"`
-	// AvailabilityState - READ-ONLY; Management information availability state for the app. Possible values include: 'Normal', 'Limited', 'DisasterRecoveryMode'
+	// AvailabilityState - READ-ONLY; Management information availability state for the app. Possible values include: 'SiteAvailabilityStateNormal', 'SiteAvailabilityStateLimited', 'SiteAvailabilityStateDisasterRecoveryMode'
 	AvailabilityState SiteAvailabilityState `json:"availabilityState,omitempty"`
 	// HostNameSslStates - Hostname SSL states are used to manage the SSL bindings for app's hostnames.
 	HostNameSslStates *[]HostNameSslState `json:"hostNameSslStates,omitempty"`
@@ -25828,7 +26522,7 @@ type SiteProperties struct {
 	// ClientCertMode - This composes with ClientCertEnabled setting.
 	// - ClientCertEnabled: false means ClientCert is ignored.
 	// - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
-	// - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted. Possible values include: 'Required', 'Optional', 'OptionalInteractiveUser'
+	// - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted. Possible values include: 'ClientCertModeRequired', 'ClientCertModeOptional', 'ClientCertModeOptionalInteractiveUser'
 	ClientCertMode ClientCertMode `json:"clientCertMode,omitempty"`
 	// ClientCertExclusionPaths - client certificate authentication comma-separated exclusion paths
 	ClientCertExclusionPaths *string `json:"clientCertExclusionPaths,omitempty"`
@@ -27088,7 +27782,7 @@ type Solution struct {
 	Order *float64 `json:"order,omitempty"`
 	// Description - Description of the solution
 	Description *string `json:"description,omitempty"`
-	// Type - Type of Solution. Possible values include: 'QuickSolution', 'DeepInvestigation', 'BestPractices'
+	// Type - Type of Solution. Possible values include: 'SolutionTypeQuickSolution', 'SolutionTypeDeepInvestigation', 'SolutionTypeBestPractices'
 	Type SolutionType `json:"type,omitempty"`
 	// Data - Solution Data.
 	Data *[][]NameValuePair `json:"data,omitempty"`
@@ -32425,7 +33119,7 @@ type TriggeredWebJobProperties struct {
 	URL *string `json:"url,omitempty"`
 	// ExtraInfoURL - Extra Info URL.
 	ExtraInfoURL *string `json:"extra_info_url,omitempty"`
-	// WebJobType - Job type. Possible values include: 'Continuous', 'Triggered'
+	// WebJobType - Job type. Possible values include: 'JobTypeContinuous', 'JobTypeTriggered'
 	WebJobType JobType `json:"web_job_type,omitempty"`
 	// Error - Error information.
 	Error *string `json:"error,omitempty"`
@@ -33027,6 +33721,20 @@ func (u *User) UnmarshalJSON(body []byte) error {
 	}
 
 	return nil
+}
+
+// UserAssignedIdentity user Assigned identity.
+type UserAssignedIdentity struct {
+	// PrincipalID - READ-ONLY; Principal Id of user assigned identity
+	PrincipalID *string `json:"principalId,omitempty"`
+	// ClientID - READ-ONLY; Client Id of user assigned identity
+	ClientID *string `json:"clientId,omitempty"`
+}
+
+// MarshalJSON is the custom marshaler for UserAssignedIdentity.
+func (uai UserAssignedIdentity) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	return json.Marshal(objectMap)
 }
 
 // UserProperties user resource specific properties
@@ -33646,7 +34354,7 @@ type VnetRouteProperties struct {
 	// DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
 	// INHERITED - Routes inherited from the real Virtual Network routes
 	// STATIC - Static route set on the app only
-	// These values will be used for syncing an app's routes with those from a Virtual Network. Possible values include: 'DEFAULT', 'INHERITED', 'STATIC'
+	// These values will be used for syncing an app's routes with those from a Virtual Network. Possible values include: 'RouteTypeDEFAULT', 'RouteTypeINHERITED', 'RouteTypeSTATIC'
 	RouteType RouteType `json:"routeType,omitempty"`
 }
 
