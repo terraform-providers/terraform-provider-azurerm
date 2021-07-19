@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2019-11-01/subscriptions"
+	"github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2020-06-01/resources"
 	subscriptionAlias "github.com/Azure/azure-sdk-for-go/services/subscription/mgmt/2020-09-01/subscription"
 	"github.com/google/uuid"
 	"github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/tf"
@@ -109,13 +110,7 @@ func resourceSubscription() *pluginsdk.Resource {
 				Computed:    true,
 			},
 
-			"tags": {
-				Type:     pluginsdk.TypeMap,
-				Computed: true,
-				Elem: &pluginsdk.Schema{
-					Type: pluginsdk.TypeString,
-				},
-			},
+			"tags": tags.Schema(),
 		},
 	}
 }
@@ -125,6 +120,7 @@ func resourceSubscriptionCreate(d *pluginsdk.ResourceData, meta interface{}) err
 	subscriptionClient := meta.(*clients.Client).Subscription.SubscriptionClient
 	client := meta.(*clients.Client).Subscription.Client
 	ctx, cancel := timeouts.ForCreate(meta.(*clients.Client).StopContext, d)
+	tagsClient := meta.(*clients.Client).Resource.TagsClient
 	defer cancel()
 
 	aliasName := ""
@@ -228,6 +224,13 @@ func resourceSubscriptionCreate(d *pluginsdk.ResourceData, meta interface{}) err
 		return fmt.Errorf("failed waiting for Subscription %q (Alias %q) to enter %q state: %+v", subscriptionId, id.Name, "Active", err)
 	}
 
+	t := tags.Expand(d.Get("tags").(map[string]interface{}))
+	scope := fmt.Sprintf("subscription/%s", subscriptionId)
+
+	if _, err = tagsClient.CreateOrUpdateAtScope(ctx, scope, resources.TagsResource{Properties: &resources.Tags{Tags: t}}); err != nil {
+		return fmt.Errorf("setting tags on %s: %+v", id, err)
+	}
+
 	d.SetId(id.ID())
 
 	return resourceSubscriptionRead(d, meta)
@@ -237,6 +240,7 @@ func resourceSubscriptionUpdate(d *pluginsdk.ResourceData, meta interface{}) err
 	aliasClient := meta.(*clients.Client).Subscription.AliasClient
 	subscriptionClient := meta.(*clients.Client).Subscription.SubscriptionClient
 	ctx, cancel := timeouts.ForUpdate(meta.(*clients.Client).StopContext, d)
+	tagsClient := meta.(*clients.Client).Resource.TagsClient
 	defer cancel()
 
 	id, err := parse.SubscriptionAliasID(d.Id())
@@ -268,13 +272,29 @@ func resourceSubscriptionUpdate(d *pluginsdk.ResourceData, meta interface{}) err
 		}
 	}
 
-	return nil
+	if d.HasChange("tags") {
+		tagsDetails := d.Get("tags").(map[string]interface{})
+		resource_tags := resources.Tags{
+			Tags: tags.Expand(tagsDetails),
+		}
+		locks.ByID(*subscriptionId)
+		defer locks.UnlockByID(*subscriptionId)
+		tagParameters := resources.TagsPatchResource{Operation: "Replace", Properties: &resource_tags}
+		updateTags, updateErr := tagsClient.UpdateAtScope(context.Background(), "subscriptions/"+*subscriptionId, tagParameters)
+		if updateErr != nil {
+			if !utils.ResponseWasNotFound(updateTags.Response) {
+				return fmt.Errorf("Updating tag value %q for subscription %q: %+v", tags.Flatten(resource_tags.Tags), *subscriptionId, updateErr)
+			}
+		}
+	}
+	return resourceSubscriptionRead(d, meta)
 }
 
 func resourceSubscriptionRead(d *pluginsdk.ResourceData, meta interface{}) error {
 	aliasClient := meta.(*clients.Client).Subscription.AliasClient
 	client := meta.(*clients.Client).Subscription.Client
 	ctx, cancel := timeouts.ForRead(meta.(*clients.Client).StopContext, d)
+
 	defer cancel()
 
 	id, err := parse.SubscriptionAliasID(d.Id())
@@ -321,6 +341,7 @@ func resourceSubscriptionRead(d *pluginsdk.ResourceData, meta interface{}) error
 	d.Set("subscription_id", subscriptionId)
 	d.Set("subscription_name", subscriptionName)
 	d.Set("tenant_id", tenantId)
+
 	if err := tags.FlattenAndSet(d, t); err != nil {
 		return err
 	}
