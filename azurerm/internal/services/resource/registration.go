@@ -40,6 +40,7 @@ func (r Registration) SupportedResources() map[string]*pluginsdk.Resource {
 		"azurerm_management_group_template_deployment": managementGroupTemplateDeploymentResource(),
 		"azurerm_resource_group":                       resourceResourceGroup(),
 		"azurerm_resource_group_template_deployment":   resourceGroupTemplateDeploymentResource(),
+		"azurerm_subscription_feature":                 resourceSubscriptionFeature(),
 		"azurerm_subscription_template_deployment":     subscriptionTemplateDeploymentResource(),
 		"azurerm_template_deployment":                  resourceTemplateDeployment(),
 		"azurerm_tenant_template_deployment":           tenantTemplateDeploymentResource(),

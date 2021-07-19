@@ -112,6 +112,7 @@ github.com/Azure/azure-sdk-for-go/services/recoveryservices/mgmt/2019-05-13/back
 github.com/Azure/azure-sdk-for-go/services/redis/mgmt/2020-06-01/redis
 github.com/Azure/azure-sdk-for-go/services/redisenterprise/mgmt/2021-03-01/redisenterprise
 github.com/Azure/azure-sdk-for-go/services/relay/mgmt/2017-04-01/relay
+github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2015-12-01/features
 github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2016-02-01/resources
 github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2016-09-01/locks
 github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2019-07-01/managedapplications
